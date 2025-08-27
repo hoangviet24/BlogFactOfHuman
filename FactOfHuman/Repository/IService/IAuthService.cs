@@ -15,5 +15,8 @@ namespace FactOfHuman.Repository.IService
         Task<bool> AdminUpdateUser(Guid userId, AdminUpdateUserDto adminUpdateUserDto);
         Task<bool> ChangePassword(Guid userId, ChangePasswordDto changePasswordDto);
         Task<UserDto> ChangePassword(ChangePasswordDto changePasswordDto, string email);
+
+        string GenerateJwtToken(User user);
+        Task<User> GetOrCreateUserFromGoogle(string email, string? name = null, string? avatarUrl = null);
     }
 }

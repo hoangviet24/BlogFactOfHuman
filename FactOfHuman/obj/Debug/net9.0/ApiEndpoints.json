@@ -116,5 +116,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.GoogleController",
+    "Method": "GoogleLogin",
+    "RelativePath": "api/Google/google",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FactOfHuman.Dto.OAuth2.GoogleLoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

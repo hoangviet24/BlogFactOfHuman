@@ -3,6 +3,7 @@ using FactOfHuman.Data;
 using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Token;
 using FactOfHuman.Dto.UserDto;
+using FactOfHuman.Enum;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -106,7 +107,7 @@ namespace FactOfHuman.Repository.Service
             await _context.SaveChangesAsync();
             return refreshToken;
         }
-        private string GenerateJwtToken(User user)
+        public string GenerateJwtToken(User user)
         {
             var claims = new List<Claim>
             {
@@ -170,6 +171,37 @@ namespace FactOfHuman.Repository.Service
             }
 
             return await CreateTokenResponse(user);
-        } 
+        }
+
+        public async Task<User> GetOrCreateUserFromGoogle(string email, string? name = null, string? avatarUrl = null)
+        {
+            // 1. Kiểm tra user đã tồn tại
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user != null)
+            {
+                // Cập nhật info nếu muốn
+                user.Name = name ?? user.Name;
+                user.AvatarUrl = avatarUrl ?? user.AvatarUrl;
+                await _context.SaveChangesAsync();
+                return user;
+            }
+
+            // 2. Tạo user mới
+            user = new User
+            {
+                Id = Guid.NewGuid(),
+                Email = email,
+                Name = name ?? "Google User",
+                AvatarUrl = avatarUrl ?? string.Empty,
+                isActive = true, // google login -> active luôn
+                CreatedAt = DateTime.UtcNow,
+                Role = Role.Reader
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
     }
 }
