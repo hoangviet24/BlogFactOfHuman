@@ -12,6 +12,7 @@ namespace FactOfHuman.Mapper
         {
             CreateMap<RegisterDto, User>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => Role.Reader.ToString()))
+                .ForMember(dest => dest.AuthProvider, opt => opt.MapFrom(src => AuthProvider.Local.ToString()))
                 .ForMember(dest=> dest.CreatedAt, opt => opt.MapFrom(src=>DateTime.UtcNow))
                 .ForMember(dest=> dest.isActive, opt => opt.MapFrom(src => false))
                 .ForMember(dest=> dest.AvatarUrl, opt => opt.MapFrom(src => string.Empty))

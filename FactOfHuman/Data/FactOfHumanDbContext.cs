@@ -33,6 +33,9 @@ namespace FactOfHuman.Data
             modelBuilder.Entity<User>()
                 .Property(u => u.Role)
                 .HasConversion<string>(); // Enum to string
+            modelBuilder.Entity<User>()
+                .Property(u => u.AuthProvider)
+                .HasConversion<string>(); // Enum to string
             // Category
             modelBuilder.Entity<Category>()
                 .HasKey(c => c.Id);

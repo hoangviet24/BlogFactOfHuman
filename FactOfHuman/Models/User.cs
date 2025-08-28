@@ -12,6 +12,7 @@ namespace FactOfHuman.Models
         public string AvatarUrl { get; set; } = string.Empty;
         public string Bio { get; set; } = string.Empty;
         public Role Role { get; set; } = Role.Reader; // Reader | Contributor | Admin
+        public AuthProvider AuthProvider { get; set; } = AuthProvider.Local; // Local | Google | Facebook
         public string activeToken { get; set; } = string.Empty;
         public bool isActive { get; set; } = false;
         public string RefreshToken { get; set; } = string.Empty;

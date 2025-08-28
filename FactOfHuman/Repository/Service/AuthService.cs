@@ -194,8 +194,9 @@ namespace FactOfHuman.Repository.Service
                 Name = name ?? "Google User",
                 AvatarUrl = avatarUrl ?? string.Empty,
                 isActive = true, // google login -> active luôn
-                CreatedAt = DateTime.UtcNow,
-                Role = Role.Reader
+                CreatedAt = DateTime.UtcNow, 
+                Role = Role.Reader,
+                AuthProvider = AuthProvider.Google,
             };
 
             _context.Users.Add(user);
