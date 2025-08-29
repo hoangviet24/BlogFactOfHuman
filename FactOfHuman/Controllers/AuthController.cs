@@ -1,6 +1,7 @@
 ﻿using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Token;
 using FactOfHuman.Dto.UserDto;
+using FactOfHuman.Enum;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.AspNetCore.Authorization;
@@ -64,11 +65,6 @@ namespace FactOfHuman.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("Public")]
-        public ActionResult Public()
-        {
-            return Ok(new { Message = "You are authorized as Reader"});
-        }
         [Authorize]
         [HttpGet("current-user")]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
@@ -94,17 +90,38 @@ namespace FactOfHuman.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An error occurred while retrieving user information" });
             }
         }
-        [Authorize(Roles ="Admin")]
-        [HttpGet("admin")]
-        public ActionResult CheckAdminAuthorize()
+        [Authorize(Roles = "Admin")]
+        [HttpPut("admin-update-user/{userId}")]
+        public async Task<ActionResult<UserDto>> AdminUpdateUser([FromRoute] Guid userId,[FromQuery] Role role, [FromBody] AdminUpdateUserDto adminUpdateUserDto)
         {
-            return Ok(new { Message = "You are authorized as Admin"});
+            try
+            {
+                var updatedUser = await _authService.AdminUpdateUser(userId, role, adminUpdateUserDto);
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-        [Authorize(Roles = "Author")]
-        [HttpGet("author")] 
-        public ActionResult CheckReaderAuthorize()
+        [Authorize]
+        [HttpPut("update-user")]
+        public async Task<ActionResult<UserDto>> UpdateUser([FromBody] UpdateUserDto updateUserDto)
         {
-            return Ok(new { Message = "You are authorized as Author" });
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+            {
+                return Unauthorized(new { Message = "Invalid or missing user ID in token" });
+            }
+            try
+            {
+                var updatedUser = await _authService.UpdateUser(userId, updateUserDto);
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -1,23 +1,39 @@
 [
   {
     "ContainingType": "FactOfHuman.Controllers.AuthController",
-    "Method": "CheckAdminAuthorize",
-    "RelativePath": "api/Auth/admin",
-    "HttpMethod": "GET",
+    "Method": "AdminUpdateUser",
+    "RelativePath": "api/Auth/admin-update-user/{userId}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FactOfHuman.Controllers.AuthController",
-    "Method": "CheckReaderAuthorize",
-    "RelativePath": "api/Auth/author",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "adminUpdateUserDto",
+        "Type": "FactOfHuman.Dto.AuthDto.AdminUpdateUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FactOfHuman.Dto.UserDto.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "FactOfHuman.Controllers.AuthController",
@@ -67,16 +83,6 @@
   },
   {
     "ContainingType": "FactOfHuman.Controllers.AuthController",
-    "Method": "Public",
-    "RelativePath": "api/Auth/Public",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FactOfHuman.Controllers.AuthController",
     "Method": "RefreshToken",
     "RelativePath": "api/Auth/refresh-token",
     "HttpMethod": "POST",
@@ -116,6 +122,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.AuthController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/Auth/update-user",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateUserDto",
+        "Type": "FactOfHuman.Dto.AuthDto.UpdateUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FactOfHuman.Dto.UserDto.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "FactOfHuman.Controllers.GoogleController",

@@ -26,9 +26,30 @@ namespace FactOfHuman.Repository.Service
             throw new NotImplementedException();
         }
 
-        public Task<bool> AdminUpdateUser(Guid userId, AdminUpdateUserDto adminUpdateUserDto)
+        public async Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new KeyNotFoundException($"User with ID {userId} not found");
+            }
+            else
+            {
+                if(user.AuthProvider == AuthProvider.Google)
+                {
+                    user.Role = role;
+                }
+                else
+                {
+                    user.Name = adminUpdateUserDto.UserName ?? user.Name;
+                    user.AvatarUrl = adminUpdateUserDto.AvatarUrl ?? user.AvatarUrl;
+                    user.Bio = adminUpdateUserDto.Bio ?? user.Bio;
+                    user.Role = role;
+                }
+                await _context.SaveChangesAsync();
+            }
+            var userDto = _mapper.Map<UserDto>(user);   
+            return await Task.FromResult(userDto);
         }
 
         public Task<bool> ChangePassword(Guid userId, ChangePasswordDto changePasswordDto)
@@ -115,6 +136,7 @@ namespace FactOfHuman.Repository.Service
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role.ToString()),
+                new Claim("auth_provider", user.AuthProvider.ToString()),
             };
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
                 configuration.GetValue<string>("Jwt:Token")!));
@@ -203,6 +225,31 @@ namespace FactOfHuman.Repository.Service
             await _context.SaveChangesAsync();
 
             return user;
+        }
+
+        public async Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            if(user == null)
+            {
+                throw new KeyNotFoundException($"User with ID {userId} not found");
+            }
+            else
+            {
+                if(user.AuthProvider == AuthProvider.Google)
+                {
+                    user.Bio = updateUserDto.Bio ?? user.Bio;
+                }
+                else
+                {
+                    user.Name = updateUserDto.Name ?? user.Name;
+                    user.AvatarUrl = updateUserDto.AvatarUrl ?? user.AvatarUrl;
+                    user.Bio = updateUserDto.Bio ?? user.Bio;
+                }
+                await _context.SaveChangesAsync();
+            }
+            var userDto = _mapper.Map<UserDto>(user);   
+            return await Task.FromResult(userDto);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Token;
 using FactOfHuman.Dto.UserDto;
+using FactOfHuman.Enum;
 using FactOfHuman.Models;
 
 namespace FactOfHuman.Repository.IService
@@ -12,7 +13,8 @@ namespace FactOfHuman.Repository.IService
         Task<TokenResponseDto?> RefreshTokenAsync(RefreshTokenRequestDto request, Guid userId);
         Task<bool> ActivateAccount(string token);
         Task<UserDto> GetCurrentUser(Guid userId);
-        Task<bool> AdminUpdateUser(Guid userId, AdminUpdateUserDto adminUpdateUserDto);
+        Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto);
+        Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto);
         Task<bool> ChangePassword(Guid userId, ChangePasswordDto changePasswordDto);
         Task<UserDto> ChangePassword(ChangePasswordDto changePasswordDto, string email);
 

@@ -158,7 +158,6 @@ D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\staticwebassets.build.json
 D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\staticwebassets.development.json
 D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\FactOfHu.C67C669D.Up2Date
 D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\FactOfHuman.dll
 D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\refint\FactOfHuman.dll
@@ -177,3 +176,4 @@ D:\C#\FactOfHuman\FactOfHuman\bin\Debug\net9.0\Google.Apis.Core.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Debug\net9.0\Newtonsoft.Json.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Debug\net9.0\System.Management.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
+D:\C#\FactOfHuman\FactOfHuman\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
