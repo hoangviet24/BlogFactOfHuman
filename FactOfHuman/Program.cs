@@ -77,6 +77,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 // Register AuthService for dependency injection
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+//Add emai
 //Auto Mapper Configurations
 builder.Services.AddAutoMapper(cfg => {
     cfg.LicenseKey = Environment.GetEnvironmentVariable("AUTO_MAP_KEY") ?? string.Empty;

@@ -7,36 +7,40 @@
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\emailtemplate\\activation.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\emailtemplate\\activation.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\iservice\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\iservice\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\authdto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\authdto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\authdto\\adminupdateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\authdto\\adminupdateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\iservice\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\iservice\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\enum\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\enum\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\authdto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\authdto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\authdto\\adminupdateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\authdto\\adminupdateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,45 +50,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 188,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "activation.html",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\EmailTemplate\\activation.html",
+              "RelativeDocumentMoniker": "FactOfHuman\\EmailTemplate\\activation.html",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\EmailTemplate\\activation.html",
+              "RelativeToolTip": "FactOfHuman\\EmailTemplate\\activation.html",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFAAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-30T08:54:33.651Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": ".env",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\.env",
+              "RelativeDocumentMoniker": "FactOfHuman\\.env",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\.env",
+              "RelativeToolTip": "FactOfHuman\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-08-30T07:12:06.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\EmailService.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\EmailService.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\EmailService.cs",
+              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\EmailService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T07:02:01.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IEmailService.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\IService\\IEmailService.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IEmailService.cs",
+              "RelativeToolTip": "FactOfHuman\\Repository\\IService\\IEmailService.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T07:01:15.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\User.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Models\\User.cs",
               "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\User.cs",
               "RelativeToolTip": "FactOfHuman\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-29T09:23:09.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Mapper\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Mapper\\MappingProfile.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Mapper\\MappingProfile.cs",
-              "RelativeToolTip": "FactOfHuman\\Mapper\\MappingProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T10:13:01.12Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Role.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\Role.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Enum\\Role.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\Role.cs",
-              "RelativeToolTip": "FactOfHuman\\Enum\\Role.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T10:10:30.155Z",
               "EditorCaption": ""
             },
             {
@@ -95,9 +129,22 @@
               "RelativeDocumentMoniker": "FactOfHuman\\Program.cs",
               "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Program.cs",
               "RelativeToolTip": "FactOfHuman\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAFAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-29T09:43:45.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T03:18:32.122Z",
               "EditorCaption": ""
             },
             {
@@ -108,14 +155,14 @@
               "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\AuthController.cs",
               "RelativeToolTip": "FactOfHuman\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAqwGsAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAQwI8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-29T09:40:23.865Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "AdminUpdateUserDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\AuthDto\\AdminUpdateUserDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\AuthDto\\AdminUpdateUserDto.cs",
@@ -123,12 +170,11 @@
               "RelativeToolTip": "FactOfHuman\\Dto\\AuthDto\\AdminUpdateUserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T09:38:35.743Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T09:38:35.743Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "UpdateUserDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\AuthDto\\UpdateUserDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\AuthDto\\UpdateUserDto.cs",
@@ -137,36 +183,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-29T09:22:46.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IAuthService.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\IService\\IAuthService.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IAuthService.cs",
-              "RelativeToolTip": "FactOfHuman\\Repository\\IService\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T09:21:49.378Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "ViewState": "AgIAANwAAAAAAAAAAAAkwPgAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T03:18:32.122Z",
               "EditorCaption": ""
             }
           ]

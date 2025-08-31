@@ -1,12 +1,12 @@
-﻿using FactOfHuman.Dto.AuthDto;
+﻿using FactOfHuman.Data;
+using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Token;
 using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
-using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace FactOfHuman.Controllers
@@ -16,9 +16,15 @@ namespace FactOfHuman.Controllers
     public class AuthController: ControllerBase
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly FactOfHumanDbContext _context;
+        private readonly IEmailService _emailService;
+        private readonly IWebHostEnvironment _env;
+        public AuthController(IAuthService authService, FactOfHumanDbContext dbContext,IEmailService emailService, IWebHostEnvironment env)
         {
             _authService = authService;
+            _context = dbContext;
+            _emailService = emailService;
+            _env = env;
         }
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegisterDto registerDto)
@@ -26,7 +32,7 @@ namespace FactOfHuman.Controllers
             try
             {
                 var user = await _authService.Register(registerDto);
-                return Ok(user);
+                return Ok(new { user, message = "Vui lòng kích hoạt tài khoản" });
             }
             catch (Exception ex)
             {
@@ -122,6 +128,49 @@ namespace FactOfHuman.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+        [HttpGet("activate")]
+        public async Task<IActionResult> Activate([FromQuery] string email, [FromQuery(Name = "activeToken")] string token)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.activeToken == token);
+            if (user == null) return BadRequest("Token không hợp lệ");
+            if(user.ActiveTokenExpireAt < DateTime.UtcNow)
+            {
+                return BadRequest("Token đã hết hạn");
+            }
+
+            user.isActive = true;
+            user.activeToken = ""; // clear
+            await _context.SaveChangesAsync();
+
+            return Redirect($"https://fact-of-human.web.app/");
+        }
+        [HttpPost("resend-email")]
+        public async Task<IActionResult> ResendActive([FromQuery] string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null) return BadRequest("Email không hợp lệ");
+            if (user.isActive)
+            {
+                return Conflict("Email đã được kích hoạt" );
+            }
+            user.activeToken = Guid.NewGuid().ToString();
+            user.ActiveTokenExpireAt = DateTime.UtcNow.AddHours(24);
+            await _context.SaveChangesAsync();
+            var activationLink = $"https://localhost:7051/api/Auth/activate?email={user.Email}&activeToken={user.activeToken}";
+            var templatePath = Path.Combine(_env.ContentRootPath, "EmailTemplate", "activation.html");
+            var html = await System.IO.File.ReadAllTextAsync(templatePath);
+            html = html.Replace("{{Username}}", user.Name)
+                .Replace("{{ActivationLink}}", activationLink);
+            await _emailService.SendEmailAsync(email,"Active email",html);
+            return Redirect($"https://fact-of-human.web.app/");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("Get-all-user")]
+        public async Task<IActionResult>GetAllUser()
+        {
+            return Ok(await _authService.GetAllUser());
         }
     }
 }

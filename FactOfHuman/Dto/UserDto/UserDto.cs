@@ -10,5 +10,6 @@
         public string Bio { get; set; } = string.Empty;
         public string Roles { get; set; } = string.Empty;
         public string AuthProvider { get; set; } = string.Empty;
+        public bool isActive { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace FactOfHuman.Models
         public Role Role { get; set; } = Role.Reader; // Reader | Contributor | Admin
         public AuthProvider AuthProvider { get; set; } = AuthProvider.Local; // Local | Google | Facebook
         public string activeToken { get; set; } = string.Empty;
+        public DateTime ActiveTokenExpireAt { get; set; } = DateTime.UtcNow;
         public bool isActive { get; set; } = false;
         public string RefreshToken { get; set; } = string.Empty;
         public DateTime RefreshTokenExpiryTime { get; set; }

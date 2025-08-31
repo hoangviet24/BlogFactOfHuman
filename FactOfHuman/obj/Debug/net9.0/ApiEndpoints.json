@@ -1,6 +1,27 @@
 [
   {
     "ContainingType": "FactOfHuman.Controllers.AuthController",
+    "Method": "Activate",
+    "RelativePath": "api/Auth/activate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "activeToken",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.AuthController",
     "Method": "AdminUpdateUser",
     "RelativePath": "api/Auth/admin-update-user/{userId}",
     "HttpMethod": "PUT",
@@ -54,6 +75,16 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.AuthController",
+    "Method": "GetAllUser",
+    "RelativePath": "api/Auth/Get-all-user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FactOfHuman.Controllers.AuthController",
@@ -119,6 +150,22 @@
         "Name": "registerDto",
         "Type": "FactOfHuman.Dto.AuthDto.RegisterDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.AuthController",
+    "Method": "ResendActive",
+    "RelativePath": "api/Auth/resend-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

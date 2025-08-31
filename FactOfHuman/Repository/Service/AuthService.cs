@@ -6,7 +6,6 @@ using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -19,13 +18,10 @@ namespace FactOfHuman.Repository.Service
     public class AuthService(
         FactOfHumanDbContext _context,
         IMapper _mapper,
-        IConfiguration configuration) : IAuthService
+        IConfiguration configuration,
+        IEmailService emailService,
+        IWebHostEnvironment _env) : IAuthService
     {
-        public Task<bool> ActivateAccount(string token)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
@@ -75,6 +71,9 @@ namespace FactOfHuman.Repository.Service
         public async Task<TokenResponseDto> Login(LoginDto loginDto)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == loginDto.Email || u.Name == loginDto.Email);
+            if (user.isActive == false) {
+                throw new Exception("Email is not active");
+            }
             if (Equals(loginDto.Email, string.Empty) || Equals(loginDto.Password, string.Empty))
             {
                 throw new Exception("Email and Password are required");
@@ -170,8 +169,17 @@ namespace FactOfHuman.Repository.Service
                 .HashPassword(user, registerDto.Password);
             user = _mapper.Map<User>(registerDto);
             user.PasswordHash = passwordHash;
+            user.activeToken = Guid.NewGuid().ToString();
+            user.isActive = false; // cần active account
+            user.ActiveTokenExpireAt = DateTime.UtcNow.AddHours(24);
             _context.Users.Add(user);
             _context.SaveChanges();
+            var activationLink = $"https://localhost:7051/api/Auth/activate?email={user.Email}&activeToken={user.activeToken}";
+            var templatePath = Path.Combine(_env.ContentRootPath, "EmailTemplate","activation.html");
+            var html = await File.ReadAllTextAsync(templatePath);
+            html = html.Replace("{{Username}}", user.Name)
+                .Replace("{{ActivationLink}}", activationLink);
+            await emailService.SendEmailAsync(user.Email, "Active account", html);
             var userDto = _mapper.Map<UserDto>(user);
             return await Task.FromResult(userDto);
         }
@@ -250,6 +258,13 @@ namespace FactOfHuman.Repository.Service
             }
             var userDto = _mapper.Map<UserDto>(user);   
             return await Task.FromResult(userDto);
+        }
+
+        public async Task<List<UserDto>> GetAllUser()
+        {
+            var user = await _context.Users.ToListAsync();
+            var useDto = _mapper.Map<List<UserDto>>(user);
+            return useDto;
         }
     }
 }
