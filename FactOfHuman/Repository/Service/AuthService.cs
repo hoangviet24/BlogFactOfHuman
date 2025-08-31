@@ -6,9 +6,11 @@ using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -48,14 +50,30 @@ namespace FactOfHuman.Repository.Service
             return await Task.FromResult(userDto);
         }
 
-        public Task<bool> ChangePassword(Guid userId, ChangePasswordDto changePasswordDto)
+        public async Task<string> ChangePassword(ChangePasswordDto changePasswordDto, Guid userId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<UserDto> ChangePassword(ChangePasswordDto changePasswordDto, string email)
-        {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) {
+                throw new BadHttpRequestException("User not found");
+            }
+            var passwordCheck = new PasswordHasher<User>()
+                .VerifyHashedPassword(user, user.PasswordHash, changePasswordDto.CurrentPassword);
+            if (Equals(changePasswordDto.CurrentPassword, string.Empty) || Equals(changePasswordDto.NewPassword, string.Empty))
+            {
+                throw new BadHttpRequestException("Field Password is not empty");
+            }
+            if (passwordCheck == PasswordVerificationResult.Failed)
+            {
+                throw new BadHttpRequestException("Password is Incorrect");
+            }
+            if(changePasswordDto.CurrentPassword == changePasswordDto.NewPassword)
+            {
+                throw new BadHttpRequestException("New password cannot be the same as the current password");
+            }
+            var newPassword = new PasswordHasher<User>().HashPassword(user,changePasswordDto.NewPassword);
+            user.PasswordHash = newPassword;
+            await _context.SaveChangesAsync();
+            return "Change Success";
         }
 
         public async Task<UserDto> GetCurrentUser(Guid userId)
@@ -70,28 +88,29 @@ namespace FactOfHuman.Repository.Service
 
         public async Task<TokenResponseDto> Login(LoginDto loginDto)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == loginDto.Email || u.Name == loginDto.Email);
-            if (user.isActive == false) {
-                throw new Exception("Email is not active");
-            }
+            var user = _context.Users.AsNoTracking().FirstOrDefault(u => u.Email == loginDto.Email || u.Name == loginDto.Email);
+            
             if (Equals(loginDto.Email, string.Empty) || Equals(loginDto.Password, string.Empty))
             {
-                throw new Exception("Email and Password are required");
+                throw new BadHttpRequestException("Email and Password are required");
             }
             if (user == null)
             {
-                throw new Exception("User or Email not found");
+                throw new BadHttpRequestException("User or Email not found");
             }
             var result = new PasswordHasher<User>()
                 .VerifyHashedPassword(user, user.PasswordHash, loginDto.Password);
             if (result == PasswordVerificationResult.Failed)
             {
-                throw new Exception("Password is incorrect");
+                throw new BadHttpRequestException("Password is incorrect");
             }
-            
+            if (user!.isActive == false)
+            {
+                throw new BadHttpRequestException("Email is not active");
+            }
+
             return await CreateTokenResponse(user);
         }
-
         private async Task<TokenResponseDto> CreateTokenResponse(User user)
         {
             return new TokenResponseDto
@@ -203,7 +222,7 @@ namespace FactOfHuman.Repository.Service
             return await CreateTokenResponse(user);
         }
 
-        public async Task<User> GetOrCreateUserFromGoogle(string email, string? name = null, string? avatarUrl = null)
+        public async Task<User> GetOrCreateUserFromOAuth(string email, string? name = null, string? avatarUrl = null)
         {
             // 1. Kiểm tra user đã tồn tại
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);

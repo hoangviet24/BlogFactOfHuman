@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "k36qxxlv4lQ=",
+  "dgSpecHash": "DcYfgaQwO3A=",
   "success": true,
   "projectFilePath": "D:\\C#\\FactOfHuman\\FactOfHuman\\FactOfHuman.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\hoang\\.nuget\\packages\\google.apis.auth\\1.70.0\\google.apis.auth.1.70.0.nupkg.sha512",
     "C:\\Users\\hoang\\.nuget\\packages\\google.apis.core\\1.70.0\\google.apis.core.1.70.0.nupkg.sha512",
     "C:\\Users\\hoang\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\hoang\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\9.0.8\\microsoft.aspnetcore.authentication.facebook.9.0.8.nupkg.sha512",
     "C:\\Users\\hoang\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\9.0.8\\microsoft.aspnetcore.authentication.google.9.0.8.nupkg.sha512",
     "C:\\Users\\hoang\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.8\\microsoft.aspnetcore.authentication.jwtbearer.9.0.8.nupkg.sha512",
     "C:\\Users\\hoang\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",

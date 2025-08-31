@@ -58,12 +58,34 @@
   },
   {
     "ContainingType": "FactOfHuman.Controllers.AuthController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Auth/Change-Password",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FactOfHuman.Dto.AuthDto.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.AuthController",
     "Method": "GetCurrentUser",
     "RelativePath": "api/Auth/current-user",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "FactOfHuman.Dto.UserDto.UserDto",
@@ -197,9 +219,25 @@
     ]
   },
   {
-    "ContainingType": "FactOfHuman.Controllers.GoogleController",
+    "ContainingType": "FactOfHuman.Controllers.OAuthController",
+    "Method": "FacebookLogin",
+    "RelativePath": "api/OAuth/facebook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FactOfHuman.Dto.OAuth2.FacebookLoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.OAuthController",
     "Method": "GoogleLogin",
-    "RelativePath": "api/Google/google",
+    "RelativePath": "api/OAuth/google",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

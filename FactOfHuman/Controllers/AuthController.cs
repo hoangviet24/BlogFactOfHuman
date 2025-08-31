@@ -3,6 +3,7 @@ using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Token;
 using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
+using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -73,17 +74,20 @@ namespace FactOfHuman.Controllers
         }
         [Authorize]
         [HttpGet("current-user")]
-        public async Task<ActionResult<UserDto>> GetCurrentUser()
+        public async Task<ActionResult<UserDto>> GetCurrentUser([FromQuery] Guid? userId)
         {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+            if(userId == null)
+            {
+                userId = GetUserIdFromClaims();
+            }
+            if(userId == null)
             {
                 return Unauthorized(new { Message = "Invalid or missing user ID in token" });
             }
 
             try
             {
-                var user = await _authService.GetCurrentUser(userId);
+                var user = await _authService.GetCurrentUser(userId!.Value);
                 if (user == null)
                 {
                     return NotFound(new { Message = "User not found" });
@@ -114,20 +118,29 @@ namespace FactOfHuman.Controllers
         [HttpPut("update-user")]
         public async Task<ActionResult<UserDto>> UpdateUser([FromBody] UpdateUserDto updateUserDto)
         {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+            var userId = GetUserIdFromClaims();
+            if(userId == null)
             {
                 return Unauthorized(new { Message = "Invalid or missing user ID in token" });
             }
             try
             {
-                var updatedUser = await _authService.UpdateUser(userId, updateUserDto);
+                var updatedUser = await _authService.UpdateUser(userId!.Value, updateUserDto);
                 return Ok(updatedUser);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+        private Guid? GetUserIdFromClaims()
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+            {
+                return null;
+            }
+            return userId;
         }
         [HttpGet("activate")]
         public async Task<IActionResult> Activate([FromQuery] string email, [FromQuery(Name = "activeToken")] string token)
@@ -171,6 +184,22 @@ namespace FactOfHuman.Controllers
         public async Task<IActionResult>GetAllUser()
         {
             return Ok(await _authService.GetAllUser());
+        }
+        [Authorize]
+        [HttpPut("Change-Password")]
+        public async Task<ActionResult> ChangePassword([FromBody]ChangePasswordDto dto)
+        {
+            var userId = GetUserIdFromClaims();
+            if (userId == null) return Unauthorized(new { Message = "Invalid or missing user ID in token" });
+            try
+            {
+                var user = await _authService.ChangePassword(dto, userId.Value);
+                return Ok(user);
+            }
+            catch (Exception ex) {
+                return Ok(ex.Message);
+            }
+            
         }
     }
 }

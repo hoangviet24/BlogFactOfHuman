@@ -12,6 +12,7 @@
           "AutoMapper": "15.0.1",
           "DotNetEnv": "3.1.1",
           "Google.Apis.Auth": "1.70.0",
+          "Microsoft.AspNetCore.Authentication.Facebook": "9.0.8",
           "Microsoft.AspNetCore.Authentication.Google": "9.0.8",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.8",
           "Microsoft.AspNetCore.OpenApi": "9.0.7",
@@ -141,6 +142,14 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Facebook/9.0.8": {
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "assemblyVersion": "9.0.8.0",
+            "fileVersion": "9.0.825.36808"
           }
         }
       },
@@ -1876,6 +1885,13 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Facebook/9.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5ETJkNHgUerGKOkTGuLrkrw7udxzeM6iRjK7CL5TD+WSoJ0oxGmYq05bb0PIWS1M3omlNIb7Z1TAWk777jmmoQ==",
+      "path": "microsoft.aspnetcore.authentication.facebook/9.0.8",
+      "hashPath": "microsoft.aspnetcore.authentication.facebook.9.0.8.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.Google/9.0.8": {
       "type": "package",
