@@ -39,7 +39,7 @@ namespace FactOfHuman.Controllers
             try
             {
                 using var httpClient = new HttpClient();
-                var url = $"https://graph.facebook.com/me?fields=id,name,email,picture&access_token={dto.AccessToken}";
+                var url = $"https://graph.facebook.com/me?fields=id,name,email,picture.width(2048).height(2048)&access_token={dto.AccessToken}";
                 var response = await httpClient.GetAsync(url);
 
                 if (!response.IsSuccessStatusCode)

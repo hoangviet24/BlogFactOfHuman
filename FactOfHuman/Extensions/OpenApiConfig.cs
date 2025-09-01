@@ -1,4 +1,5 @@
-﻿using Scalar.AspNetCore;
+﻿using Microsoft.Extensions.FileProviders;
+using Scalar.AspNetCore;
 
 namespace FactOfHuman.Extensions
 {
@@ -22,6 +23,7 @@ namespace FactOfHuman.Extensions
                 });
             }
             app.UseCors("AllowAll");
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();

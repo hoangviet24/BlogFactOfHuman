@@ -39,9 +39,19 @@
         "IsRequired": false
       },
       {
-        "Name": "adminUpdateUserDto",
-        "Type": "FactOfHuman.Dto.AuthDto.AdminUpdateUserDto",
-        "IsRequired": true
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Bio",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AvatarUrl",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -201,9 +211,19 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "updateUserDto",
-        "Type": "FactOfHuman.Dto.AuthDto.UpdateUserDto",
-        "IsRequired": true
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Bio",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AvatarUrl",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

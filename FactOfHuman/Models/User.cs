@@ -9,7 +9,7 @@ namespace FactOfHuman.Models
         public string Email { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public string AvatarUrl { get; set; } = string.Empty;
+        public string AvatarUrl { get; set; } = string.Empty ;
         public string Bio { get; set; } = string.Empty;
         public Role Role { get; set; } = Role.Reader; // Reader | Contributor | Admin
         public AuthProvider AuthProvider { get; set; } = AuthProvider.Local; // Local | Google | Facebook

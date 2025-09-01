@@ -12,8 +12,8 @@ namespace FactOfHuman.Repository.IService
         Task<TokenResponseDto> Login(LoginDto loginDto);
         Task<TokenResponseDto?> RefreshTokenAsync(RefreshTokenRequestDto request, Guid userId);
         Task<UserDto> GetCurrentUser(Guid userId);
-        Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto);
-        Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto);
+        Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto,string avatarUrl);
+        Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto, string avatarUrl);
         Task<string> ChangePassword(ChangePasswordDto changePasswordDto, Guid userId);
         string GenerateJwtToken(User user);
         Task<User> GetOrCreateUserFromOAuth(string email, string? name = null, string? avatarUrl = null);

@@ -5,6 +5,7 @@ using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
+using Google.Apis.Util;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -102,11 +103,24 @@ namespace FactOfHuman.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpPut("admin-update-user/{userId}")]
-        public async Task<ActionResult<UserDto>> AdminUpdateUser([FromRoute] Guid userId,[FromQuery] Role role, [FromBody] AdminUpdateUserDto adminUpdateUserDto)
+        public async Task<ActionResult<UserDto>> AdminUpdateUser([FromRoute] Guid userId,[FromQuery] Role role, [FromForm] AdminUpdateUserDto adminUpdateUserDto)
         {
+            string avatarUrl = string.Empty;
+            if(adminUpdateUserDto.AvatarUrl != null && adminUpdateUserDto.AvatarUrl.Length >0)
+            {
+                var uploadFolder = Path.Combine(_env.WebRootPath, "uploads");
+                Directory.CreateDirectory(uploadFolder);
+                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(adminUpdateUserDto.AvatarUrl?.FileName)}";
+                var filePath = Path.Combine(uploadFolder, fileName);
+                using(var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await adminUpdateUserDto.AvatarUrl!.CopyToAsync(stream);
+                }
+                avatarUrl = $"/uploads/{fileName}";
+            }
             try
             {
-                var updatedUser = await _authService.AdminUpdateUser(userId, role, adminUpdateUserDto);
+                var updatedUser = await _authService.AdminUpdateUser(userId, role, adminUpdateUserDto,avatarUrl!);
                 return Ok(updatedUser);
             }
             catch (Exception ex)
@@ -116,16 +130,56 @@ namespace FactOfHuman.Controllers
         }
         [Authorize]
         [HttpPut("update-user")]
-        public async Task<ActionResult<UserDto>> UpdateUser([FromBody] UpdateUserDto updateUserDto)
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<UserDto>> UpdateUser([FromForm] UpdateUserDto updateUserDto )
         {
             var userId = GetUserIdFromClaims();
-            if(userId == null)
+            if (userId == null)
             {
                 return Unauthorized(new { Message = "Invalid or missing user ID in token" });
             }
+            string avatarUrl = string.Empty;
+            // Lấy đường dẫn file cũ
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId.Value);
+            string? oldAvatarPath = null;
+            if (!string.IsNullOrEmpty(user?.AvatarUrl))
+            {
+                oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), user.AvatarUrl.TrimStart('/'));
+            }
+
+            if (updateUserDto.AvatarUrl != null && updateUserDto.AvatarUrl.Length > 0)
+            {
+                var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                var uploadFolder = Path.Combine(webrootPath, "uploads");
+                Directory.CreateDirectory(uploadFolder);
+
+                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(updateUserDto.AvatarUrl.FileName)}";
+                var filePath = Path.Combine(uploadFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await updateUserDto.AvatarUrl.CopyToAsync(stream);
+                }
+
+                avatarUrl = $"/uploads/{fileName}";
+
+                // Xóa file cũ
+                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(oldAvatarPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
+                    }
+                }
+            }
+
             try
             {
-                var updatedUser = await _authService.UpdateUser(userId!.Value, updateUserDto);
+                var updatedUser = await _authService.UpdateUser(userId!.Value, updateUserDto,avatarUrl);
                 return Ok(updatedUser);
             }
             catch (Exception ex)

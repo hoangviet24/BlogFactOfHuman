@@ -24,7 +24,7 @@ namespace FactOfHuman.Repository.Service
         IEmailService emailService,
         IWebHostEnvironment _env) : IAuthService
     {
-        public async Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto)
+        public async Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto,string avatarUrl)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
             if (user == null)
@@ -40,7 +40,7 @@ namespace FactOfHuman.Repository.Service
                 else
                 {
                     user.Name = adminUpdateUserDto.UserName ?? user.Name;
-                    user.AvatarUrl = adminUpdateUserDto.AvatarUrl ?? user.AvatarUrl;
+                    user.AvatarUrl = avatarUrl ?? user.AvatarUrl;
                     user.Bio = adminUpdateUserDto.Bio ?? user.Bio;
                     user.Role = role;
                 }
@@ -254,7 +254,7 @@ namespace FactOfHuman.Repository.Service
             return user;
         }
 
-        public async Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto)
+        public async Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto,string avatarUrl)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
             if(user == null)
@@ -270,7 +270,7 @@ namespace FactOfHuman.Repository.Service
                 else
                 {
                     user.Name = updateUserDto.Name ?? user.Name;
-                    user.AvatarUrl = updateUserDto.AvatarUrl ?? user.AvatarUrl;
+                    user.AvatarUrl = avatarUrl ?? user.AvatarUrl;
                     user.Bio = updateUserDto.Bio ?? user.Bio;
                 }
                 await _context.SaveChangesAsync();
