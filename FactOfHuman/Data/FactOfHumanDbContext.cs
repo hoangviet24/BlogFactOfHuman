@@ -77,7 +77,6 @@ namespace FactOfHuman.Data
                 .HasOne(pb => pb.Post)
                 .WithMany(p=>p.Block) // 1 Post có nhiều Post block
                 .HasForeignKey(pb => pb.PostId);
-
             // Many-to-Many Post <-> Tag
             modelBuilder.Entity<Post>()
                 .HasMany(p => p.Tags)

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FactOfHuman.Dto.AuthDto;
+using FactOfHuman.Dto.CommentDto;
 using FactOfHuman.Dto.Post;
 using FactOfHuman.Dto.Tag;
 using FactOfHuman.Dto.UserDto;
@@ -26,6 +27,11 @@ namespace FactOfHuman.Mapper
             CreateMap<Post, PostDto>()
                 .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()))
                 .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Block));
+            CreateMap<Comment, CommentDto>()
+                .ForMember(dest => dest.PostName, opt => opt.MapFrom(src => src.Post.Title))
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Name))
+                .ForMember(dest => dest.FactName, opt => opt.MapFrom(src => src.Fact.Title))
+                .ForMember(dest => dest.statusComment, opt => opt.MapFrom(src => StatusComment.Visible.ToString()));
         }
     }
 }

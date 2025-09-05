@@ -92,6 +92,7 @@ namespace FactOfHuman.Extensions
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ITagService, TagService>();
             builder.Services.AddScoped<IPostBlockService, PostBlockService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
 
             //Auto Mapper Configurations
             builder.Services.AddAutoMapper(cfg => {

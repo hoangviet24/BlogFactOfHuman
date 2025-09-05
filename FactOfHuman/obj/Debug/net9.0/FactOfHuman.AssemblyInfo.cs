@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FactOfHuman")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c9e586f0b408142e4f9903c268160b1828d075c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b02df085c94908380dbd7e9dc442c16f108f25e")]
 [assembly: System.Reflection.AssemblyProductAttribute("FactOfHuman")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FactOfHuman")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

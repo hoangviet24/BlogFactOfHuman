@@ -90,7 +90,7 @@ namespace FactOfHuman.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize (Roles = "Admin")]
+        [Authorize (Roles = "Author")]
         [HttpDelete("Delete-By-Id/{id}")]
         public async Task<ActionResult> DeleteById([FromRoute] Guid id)
         {

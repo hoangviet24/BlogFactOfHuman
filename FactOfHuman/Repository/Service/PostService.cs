@@ -89,6 +89,8 @@ namespace FactOfHuman.Repository.Service
             }
             else
             {
+                post.Views++;
+                _context.SaveChanges();
                 var postdto = _mapper.Map<PostDto>(post);
                 return postdto;
             }
