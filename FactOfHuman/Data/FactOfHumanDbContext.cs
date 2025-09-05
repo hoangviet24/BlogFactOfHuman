@@ -16,6 +16,7 @@ namespace FactOfHuman.Data
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<Bookmark> BookMarks { get; set; } = null!;
         public DbSet<Reaction> Reactions { get; set; } = null!;
+        public DbSet<PostBlock> PostBlocks { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -63,6 +64,19 @@ namespace FactOfHuman.Data
                 .HasOne(p => p.Category)
                 .WithMany() // 1 Category -> nhiều Post
                 .HasForeignKey(p => p.CategoryId);
+            modelBuilder.Entity<Post>()
+                .HasIndex(p => p.Slug)
+                .IsUnique();
+            //Block Post
+            modelBuilder.Entity<PostBlock>()
+                .HasKey(pb => pb.Id);
+            modelBuilder.Entity<PostBlock>()
+                .HasIndex(pb => pb.Id)
+                .IsUnique();
+            modelBuilder.Entity<PostBlock>()
+                .HasOne(pb => pb.Post)
+                .WithMany(p=>p.Block) // 1 Post có nhiều Post block
+                .HasForeignKey(pb => pb.PostId);
 
             // Many-to-Many Post <-> Tag
             modelBuilder.Entity<Post>()

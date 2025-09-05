@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.FileProviders;
+﻿using FactOfHuman.Repository.IService;
+using FactOfHuman.Repository.Service;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 
 namespace FactOfHuman.Extensions

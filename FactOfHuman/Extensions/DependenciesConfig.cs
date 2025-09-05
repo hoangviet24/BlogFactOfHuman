@@ -39,6 +39,7 @@ namespace FactOfHuman.Extensions
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                 });
             // Add DbContext with SQL Server provider
             builder.Services.AddDbContext<FactOfHumanDbContext>(options =>
@@ -87,6 +88,10 @@ namespace FactOfHuman.Extensions
             // Register AuthService for dependency injection
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
+            builder.Services.AddScoped<IPostService, PostService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ITagService, TagService>();
+            builder.Services.AddScoped<IPostBlockService, PostBlockService>();
 
             //Auto Mapper Configurations
             builder.Services.AddAutoMapper(cfg => {

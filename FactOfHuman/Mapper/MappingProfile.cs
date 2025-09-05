@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using FactOfHuman.Dto.AuthDto;
+using FactOfHuman.Dto.Post;
+using FactOfHuman.Dto.Tag;
 using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
 using FactOfHuman.Models;
@@ -20,6 +22,10 @@ namespace FactOfHuman.Mapper
                 .ForMember(dest=> dest.Bio, opt => opt.MapFrom(src => string.Empty));
             CreateMap<User, UserDto>()
                 .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.Role.ToString()));
+            CreateMap<PostBlock, PostBlockDto>();
+            CreateMap<Post, PostDto>()
+                .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()))
+                .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Block));
         }
     }
 }

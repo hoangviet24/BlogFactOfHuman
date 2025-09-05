@@ -8,7 +8,7 @@ namespace FactOfHuman.Models
         public string Slug { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Summary { get; set; } = string.Empty;
-        public string Content { get; set; } = string.Empty;
+        public List<PostBlock> Block { get; set; } = new();
         public StatusPost Status { get; set; } = StatusPost.Draft; // Draft | Published | Archived
         public Guid AuthorId { get; set; }
         public User Author { get; set; } = null!;

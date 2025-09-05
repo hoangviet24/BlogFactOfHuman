@@ -41,7 +41,7 @@ namespace FactOfHuman.Repository.Service
                 {
                     user.Name = adminUpdateUserDto.UserName ?? user.Name;
                     user.AvatarUrl = avatarUrl ?? user.AvatarUrl;
-                    user.Bio = adminUpdateUserDto.Bio ?? user.Bio;
+                    user.Bio = avatarUrl ?? user.Bio;
                     user.Role = role;
                 }
                 await _context.SaveChangesAsync();

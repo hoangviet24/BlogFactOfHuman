@@ -29,6 +29,7 @@ namespace FactOfHuman.Controllers
             _env = env;
         }
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<ActionResult> Register([FromBody] RegisterDto registerDto)
         {
             try
@@ -42,6 +43,7 @@ namespace FactOfHuman.Controllers
             }
         }
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<ActionResult<TokenResponseDto>> Login([FromBody] LoginDto loginDto)
         {
             try
@@ -103,24 +105,51 @@ namespace FactOfHuman.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpPut("admin-update-user/{userId}")]
+        [Consumes("multipart/form-data")]
         public async Task<ActionResult<UserDto>> AdminUpdateUser([FromRoute] Guid userId,[FromQuery] Role role, [FromForm] AdminUpdateUserDto adminUpdateUserDto)
         {
             string avatarUrl = string.Empty;
-            if(adminUpdateUserDto.AvatarUrl != null && adminUpdateUserDto.AvatarUrl.Length >0)
+            // Lấy đường dẫn file cũ
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            string? oldAvatarPath = null;
+            if (!string.IsNullOrEmpty(user?.AvatarUrl))
             {
-                var uploadFolder = Path.Combine(_env.WebRootPath, "uploads");
-                Directory.CreateDirectory(uploadFolder);
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(adminUpdateUserDto.AvatarUrl?.FileName)}";
-                var filePath = Path.Combine(uploadFolder, fileName);
-                using(var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await adminUpdateUserDto.AvatarUrl!.CopyToAsync(stream);
-                }
-                avatarUrl = $"/uploads/{fileName}";
+                oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), user.AvatarUrl.TrimStart('/'));
             }
+
+            if (adminUpdateUserDto.AvatarUrl != null && adminUpdateUserDto.AvatarUrl.Length > 0)
+            {
+                var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                var uploadFolder = Path.Combine(webrootPath, "uploads");
+                Directory.CreateDirectory(uploadFolder);
+
+                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(adminUpdateUserDto.AvatarUrl.FileName)}";
+                var filePath = Path.Combine(uploadFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await adminUpdateUserDto.AvatarUrl.CopyToAsync(stream);
+                }
+
+                avatarUrl = $"/uploads/{fileName}";
+
+                // Xóa file cũ
+                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(oldAvatarPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
+                    }
+                }
+            }
+
             try
             {
-                var updatedUser = await _authService.AdminUpdateUser(userId, role, adminUpdateUserDto,avatarUrl!);
+                var updatedUser = await _authService.AdminUpdateUser(userId,role, adminUpdateUserDto, avatarUrl);
                 return Ok(updatedUser);
             }
             catch (Exception ex)

@@ -1,4 +1,0 @@
-D:\C#\FactOfHuman\FactOfHuman\wwwroot\uploads\3eb301f4-9a3b-4b45-8337-2b6e88273b1a.jpg
-D:\C#\FactOfHuman\FactOfHuman\wwwroot\uploads\13efc81a-342d-461e-8dc2-a857e7143bdc.jpg
-D:\C#\FactOfHuman\FactOfHuman\wwwroot\uploads\62b8f056-d3a3-41aa-944d-ff74e19120d9.jpg
-D:\C#\FactOfHuman\FactOfHuman\wwwroot\uploads\7d5aec8d-4b2f-4642-a940-ec399e65354e.jpg
