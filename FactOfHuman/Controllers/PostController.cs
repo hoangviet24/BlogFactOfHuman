@@ -1,10 +1,13 @@
 ﻿using DotNetEnv;
+using FactOfHuman.Data;
 using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Post;
+using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace FactOfHuman.Controllers
@@ -15,10 +18,12 @@ namespace FactOfHuman.Controllers
     {
         private readonly IPostService _postService;
         private readonly IWebHostEnvironment _env;
-        public PostController(IPostService postService, IWebHostEnvironment env)
+        private readonly FactOfHumanDbContext _context;
+        public PostController(IPostService postService, IWebHostEnvironment env, FactOfHumanDbContext context)
         {
             _postService = postService;
             _env = env;
+            _context = context;
         }
         [Authorize(Roles ="Author")]
         [HttpPost("Post")]
@@ -115,7 +120,13 @@ namespace FactOfHuman.Controllers
         public async Task<ActionResult<PostDto>> UpdatePost([FromRoute] Guid id, [FromForm] CreatePostDto dto)
         {
             var userId = GetUserIdFromClaims();
+            var postId = await _context.Posts.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
             string coverImage = string.Empty;
+            string oldAvatarPath = string.Empty;
+            if (!string.IsNullOrEmpty(postId?.CoverImage))
+            {
+                oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), postId.CoverImage.TrimStart('/'));
+            }
             if (dto.CoverImage != null && dto.CoverImage.Length > 0)
             {
                 var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
@@ -128,6 +139,18 @@ namespace FactOfHuman.Controllers
                     await dto.CoverImage.CopyToAsync(stream);
                 }
                 coverImage = $"/posts/{fileName}";
+                // Xóa file cũ
+                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(oldAvatarPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
+                    }
+                }
             }
             try
             {
@@ -143,6 +166,12 @@ namespace FactOfHuman.Controllers
         [HttpDelete("Delete/{id}")]
         public async Task<ActionResult> DeletePost([FromRoute] Guid id)
         {
+            var postId = await _context.Posts.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+            string oldAvatarPath = string.Empty;
+            if (!string.IsNullOrEmpty(postId?.CoverImage))
+            {
+                oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), postId.CoverImage.TrimStart('/'));
+            }
             var userId = GetUserIdFromClaims();
             if (userId == null)
             {
@@ -158,6 +187,18 @@ namespace FactOfHuman.Controllers
                 else
                 {
                     await _postService.DeletePostAsync(id, userId.Value);
+                }
+                // Xóa file cũ
+                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(oldAvatarPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
+                    }
                 }
                 return Ok(new { message = "Post deleted successfully." });
             }

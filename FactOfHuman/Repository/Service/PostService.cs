@@ -13,10 +13,12 @@ namespace FactOfHuman.Repository.Service
     {
         private readonly FactOfHumanDbContext _context;
         private readonly IMapper _mapper;
-        public PostService(FactOfHumanDbContext context, IMapper mapper)
+        private readonly ICommentService _commentService;   
+        public PostService(FactOfHumanDbContext context, IMapper mapper, ICommentService commentService)
         {
             _context = context;
             _mapper = mapper;
+            _commentService = commentService;
         }
 
         public async Task<PostDto> CreatePostAsync(CreatePostDto dto,string coverImage, Guid userId)
@@ -43,11 +45,13 @@ namespace FactOfHuman.Repository.Service
 
         public async Task<bool> DeletePostAsync(Guid id, Guid userId)
         {
-            var deletePost = _context.Posts.FirstOrDefault(p => p.Id == id && p.AuthorId == userId);
+            var deletePost = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id && p.AuthorId == userId);
+            var deleteComment = await _context.Comments.Where(c => c.PostId == id).ToListAsync();
             if (deletePost == null)
             {
                 throw new Exception("Post not found");
             }
+            _context.Comments.RemoveRange(deleteComment);
             _context.Posts.Remove(deletePost);
             _context.SaveChanges();
             return await Task.FromResult(true);
@@ -56,10 +60,12 @@ namespace FactOfHuman.Repository.Service
         public async Task<bool> DeletePostAsyncWithAdmin(Guid id)
         {
             var deletePost = _context.Posts.FirstOrDefault(p => p.Id == id);
+            var deleteComment = await _context.Comments.Where(c => c.PostId == id).ToListAsync();
             if (deletePost == null)
             {
                 throw new Exception("Post not found");
             }
+            _context.Comments.RemoveRange(deleteComment);
             _context.Posts.Remove(deletePost);
             _context.SaveChanges();
             return await Task.FromResult(true);
@@ -70,6 +76,8 @@ namespace FactOfHuman.Repository.Service
             var post = await _context.Posts
                 .Include(post => post.Tags)
                 .Include(post => post.Block)
+                .Include(post => post.Author)
+                .Include(post => post.Category)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();

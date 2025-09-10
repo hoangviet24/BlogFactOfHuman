@@ -11,7 +11,6 @@ namespace FactOfHuman.Data
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Tag> Tags { get; set; } = null!;
-        public DbSet<Fact> Facts { get; set; } = null!;
         public DbSet<Post> Posts { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<Bookmark> BookMarks { get; set; } = null!;
@@ -67,6 +66,10 @@ namespace FactOfHuman.Data
             modelBuilder.Entity<Post>()
                 .HasIndex(p => p.Slug)
                 .IsUnique();
+            // Many-to-Many Post <-> Tag
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Tags)
+                .WithMany();
             //Block Post
             modelBuilder.Entity<PostBlock>()
                 .HasKey(pb => pb.Id);
@@ -77,50 +80,19 @@ namespace FactOfHuman.Data
                 .HasOne(pb => pb.Post)
                 .WithMany(p=>p.Block) // 1 Post có nhiều Post block
                 .HasForeignKey(pb => pb.PostId);
-            // Many-to-Many Post <-> Tag
-            modelBuilder.Entity<Post>()
-                .HasMany(p => p.Tags)
-                .WithMany();
-
-            // Fact
-            modelBuilder.Entity<Fact>()
-                .HasKey(f => f.Id);
-
-            modelBuilder.Entity<Fact>()
-                .HasOne(f => f.Author)
-                .WithMany()
-                .HasForeignKey(f => f.AuthorId);
-
-            modelBuilder.Entity<Fact>()
-                .HasOne(f => f.Category)
-                .WithMany()
-                .HasForeignKey(f => f.CategoryId);
-
-            modelBuilder.Entity<Fact>()
-                .HasMany(f => f.Tags)
-                .WithMany();
+            
 
             // Comment
             modelBuilder.Entity<Comment>()
                 .HasKey(c => c.Id);
-
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.User)
                 .WithMany()
-                .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
+                .HasForeignKey(c => c.UserId);
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Post)
                 .WithMany()
-                .HasForeignKey(c => c.PostId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Comment>()
-                .HasOne(c => c.Fact)
-                .WithMany()
-                .HasForeignKey(c => c.FactId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(c=> c.PostId);
 
             // Reaction
             modelBuilder.Entity<Reaction>()

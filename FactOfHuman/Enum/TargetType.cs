@@ -5,6 +5,6 @@ namespace FactOfHuman.Enum
     public enum TargetType
     {
         Post,
-        Fact
+        Comment
     }
 }

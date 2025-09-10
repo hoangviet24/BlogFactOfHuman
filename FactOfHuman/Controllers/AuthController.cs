@@ -239,7 +239,8 @@ namespace FactOfHuman.Controllers
             user.activeToken = ""; // clear
             await _context.SaveChangesAsync();
 
-            return Redirect($"https://fact-of-human.web.app/");
+            //return Redirect($"https://fact-of-human.web.app/");
+            return Ok(value: new { message = "Kích hoạt tài khoản thành công, vui lòng đăng nhập" });
         }
         [HttpPost("resend-email")]
         public async Task<IActionResult> ResendActive([FromQuery] string email)
@@ -281,8 +282,18 @@ namespace FactOfHuman.Controllers
             }
             catch (Exception ex) {
                 return Ok(ex.Message);
+            }   
+        }
+        [Authorize]
+        [HttpDelete("Delete-User/{userId}")]
+        public async Task<IActionResult> DeleteUser([FromRoute]Guid userId)
+        {
+            if(userId == Guid.Empty)
+            {
+                var currentUserId = GetUserIdFromClaims();
+                return Ok(await _authService.DeleteUser(currentUserId.Value));
             }
-            
+            return Ok(await _authService.DeleteUser(userId));
         }
     }
 }

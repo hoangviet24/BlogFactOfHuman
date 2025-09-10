@@ -27,11 +27,36 @@ namespace FactOfHuman.Controllers
             return Ok(comment);
         }
         [AllowAnonymous]
+        [HttpGet("Get-All-Comment")]
+        public async Task<ActionResult> GetAllComments(int skip = 0, int take = 10)
+        {
+            var comments = await _commentService.GetAllCommentAsync(skip, take);
+            return Ok(comments);
+        }
+        [AllowAnonymous]
         [HttpGet("Get-Comments/{postId}")]
         public async Task<ActionResult> GetCommentsByPostId(Guid postId, int skip = 0, int take = 10)
         {
             var comments = await _commentService.GetCommentsByPostIdAsync(postId, skip, take);
             return Ok(comments);
+        }
+        [Authorize]
+        [HttpDelete("Delete-Comment/{commentId}")]
+        public async Task<ActionResult> DeleteComment([FromRoute]Guid commentId)
+        {
+            var userId = GetUserIdFromClaims();
+            if (userId == null) return Unauthorized("User ID not found in token");
+            var result = await _commentService.DeleteCommentAsync(commentId, userId.Value);
+            if (!result) return NotFound("Comment not found or you are not authorized to delete this comment");
+            return NoContent();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("Admin-Delete-Comment/{commentId}")]
+        public async Task<ActionResult> AdminDeleteComment([FromRoute]Guid commentId)
+        {
+            var result = await _commentService.DeleteCommentAsyncWithAdmin(commentId);
+            if (!result) return NotFound("Comment not found");
+            return NoContent();
         }
         private Guid? GetUserIdFromClaims()
         {

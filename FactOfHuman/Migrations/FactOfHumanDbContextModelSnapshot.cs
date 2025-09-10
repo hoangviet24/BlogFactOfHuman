@@ -94,56 +94,11 @@ namespace FactOfHuman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FactId");
-
                     b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("FactOfHuman.Models.Fact", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("PublishedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.PrimitiveCollection<string>("Sources")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Facts");
                 });
 
             modelBuilder.Entity("FactOfHuman.Models.Post", b =>
@@ -211,10 +166,18 @@ namespace FactOfHuman.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BottomImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TopContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TopImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -226,31 +189,6 @@ namespace FactOfHuman.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("PostBlocks");
-                });
-
-            modelBuilder.Entity("FactOfHuman.Models.PostBlockImage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("PostBlockId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("postBlockId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostBlockId");
-
-                    b.HasIndex("postBlockId");
-
-                    b.ToTable("PostBlockImage");
                 });
 
             modelBuilder.Entity("FactOfHuman.Models.Reaction", b =>
@@ -368,21 +306,6 @@ namespace FactOfHuman.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("FactTag", b =>
-                {
-                    b.Property<Guid>("FactId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TagsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("FactId", "TagsId");
-
-                    b.HasIndex("TagsId");
-
-                    b.ToTable("FactTag");
-                });
-
             modelBuilder.Entity("PostTag", b =>
                 {
                     b.Property<Guid>("PostId")
@@ -411,46 +334,19 @@ namespace FactOfHuman.Migrations
 
             modelBuilder.Entity("FactOfHuman.Models.Comment", b =>
                 {
-                    b.HasOne("FactOfHuman.Models.Fact", "Fact")
-                        .WithMany()
-                        .HasForeignKey("FactId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("FactOfHuman.Models.Post", "Post")
                         .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("PostId");
 
                     b.HasOne("FactOfHuman.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Fact");
 
                     b.Navigation("Post");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FactOfHuman.Models.Fact", b =>
-                {
-                    b.HasOne("FactOfHuman.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FactOfHuman.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("FactOfHuman.Models.Post", b =>
@@ -483,23 +379,6 @@ namespace FactOfHuman.Migrations
                     b.Navigation("Post");
                 });
 
-            modelBuilder.Entity("FactOfHuman.Models.PostBlockImage", b =>
-                {
-                    b.HasOne("FactOfHuman.Models.PostBlock", null)
-                        .WithMany("BottomImage")
-                        .HasForeignKey("PostBlockId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FactOfHuman.Models.PostBlock", "postBlock")
-                        .WithMany("TopImage")
-                        .HasForeignKey("postBlockId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("postBlock");
-                });
-
             modelBuilder.Entity("FactOfHuman.Models.Reaction", b =>
                 {
                     b.HasOne("FactOfHuman.Models.User", "User")
@@ -509,21 +388,6 @@ namespace FactOfHuman.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FactTag", b =>
-                {
-                    b.HasOne("FactOfHuman.Models.Fact", null)
-                        .WithMany()
-                        .HasForeignKey("FactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FactOfHuman.Models.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("PostTag", b =>
@@ -544,13 +408,6 @@ namespace FactOfHuman.Migrations
             modelBuilder.Entity("FactOfHuman.Models.Post", b =>
                 {
                     b.Navigation("Block");
-                });
-
-            modelBuilder.Entity("FactOfHuman.Models.PostBlock", b =>
-                {
-                    b.Navigation("BottomImage");
-
-                    b.Navigation("TopImage");
                 });
 #pragma warning restore 612, 618
         }

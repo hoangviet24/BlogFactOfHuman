@@ -26,11 +26,12 @@ namespace FactOfHuman.Mapper
             CreateMap<PostBlock, PostBlockDto>();
             CreateMap<Post, PostDto>()
                 .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()))
-                .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Block));
+                .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Block))
+                .ForMember(dest => dest.AuthorId, opt => opt.MapFrom(src => src.Author.Name))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category.Name));
             CreateMap<Comment, CommentDto>()
                 .ForMember(dest => dest.PostName, opt => opt.MapFrom(src => src.Post.Title))
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Name))
-                .ForMember(dest => dest.FactName, opt => opt.MapFrom(src => src.Fact.Title))
                 .ForMember(dest => dest.statusComment, opt => opt.MapFrom(src => StatusComment.Visible.ToString()));
         }
     }

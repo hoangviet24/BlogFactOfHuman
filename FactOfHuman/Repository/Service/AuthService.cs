@@ -285,5 +285,17 @@ namespace FactOfHuman.Repository.Service
             var useDto = _mapper.Map<List<UserDto>>(user);
             return useDto;
         }
+
+        public Task<bool> DeleteUser(Guid userId)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return Task.FromResult(false);
+            }
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+            return Task.FromResult(true);
+        }
     }
 }

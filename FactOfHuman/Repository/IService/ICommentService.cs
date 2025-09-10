@@ -6,6 +6,7 @@ namespace FactOfHuman.Repository.IService
     public interface ICommentService
     {
         Task<CommentDto> CreateCommentAsync(Guid userId, CreateCommentDto dto);
+        Task<List<CommentDto>> GetAllCommentAsync( int skip, int take);
         Task<List<CommentDto>> GetCommentsByPostIdAsync(Guid postId, int skip, int take);
         Task<bool> DeleteCommentAsync(Guid commentId, Guid userId);
         Task<bool> DeleteCommentAsyncWithAdmin(Guid commentId);

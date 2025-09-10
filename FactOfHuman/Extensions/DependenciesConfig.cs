@@ -40,6 +40,7 @@ namespace FactOfHuman.Extensions
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                    options.JsonSerializerOptions.WriteIndented = true;
                 });
             // Add DbContext with SQL Server provider
             builder.Services.AddDbContext<FactOfHumanDbContext>(options =>

@@ -19,6 +19,10 @@ namespace FactOfHuman.Repository.Service
         }
         public async Task<CommentDto> CreateCommentAsync(Guid userId, CreateCommentDto dto)
         {
+            if(dto.PostId == null && dto.FactId == null)
+            {
+                throw new ArgumentException("PostId or FactId cannot be null");
+            }
             var comment = new Comment
             {
                 Id = Guid.NewGuid(),
@@ -35,12 +39,38 @@ namespace FactOfHuman.Repository.Service
 
         public Task<bool> DeleteCommentAsync(Guid commentId, Guid userId)
         {
-            throw new NotImplementedException();
+            var comment = _context.Comments.FirstOrDefault(c => c.Id == commentId && c.UserId == userId);
+            if (comment == null)
+            {
+                return Task.FromResult(false);
+            }
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+            return Task.FromResult(true);
         }
 
         public Task<bool> DeleteCommentAsyncWithAdmin(Guid commentId)
         {
-            throw new NotImplementedException();
+            var comment = _context.Comments.FirstOrDefault(c => c.Id == commentId);
+            if (comment == null)
+            {
+                return Task.FromResult(false);
+            }
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+            return Task.FromResult(true);
+        }
+
+        public async Task<List<CommentDto>> GetAllCommentAsync(int skip, int take)
+        {
+            var comments = _context.Comments
+                .Include(c => c.User)
+                .Include(c => c.Post)
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+            var commentDtos = _mapper.Map<List<CommentDto>>(comments);
+            return await Task.FromResult(commentDtos);
         }
 
         public async Task<List<CommentDto>> GetCommentsByPostIdAsync(Guid postId, int skip, int take)
@@ -49,7 +79,6 @@ namespace FactOfHuman.Repository.Service
                 .Where(c => c.PostId == postId)
                 .Include(c => c.User)
                 .Include(c => c.Post)
-                .Include(c => c.Fact)
                 .Skip(skip)
                 .Take(take)
                 .ToList();

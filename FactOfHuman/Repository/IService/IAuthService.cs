@@ -18,5 +18,6 @@ namespace FactOfHuman.Repository.IService
         string GenerateJwtToken(User user);
         Task<User> GetOrCreateUserFromOAuth(string email, string? name = null, string? avatarUrl = null);
         Task<List<UserDto>> GetAllUser();
+        Task<bool> DeleteUser(Guid userId);
     }
 }

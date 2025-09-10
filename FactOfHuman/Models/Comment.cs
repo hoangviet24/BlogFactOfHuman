@@ -17,6 +17,5 @@ namespace FactOfHuman.Models
         public Post? Post { get; set; }
 
         public Guid? FactId { get; set; }
-        public Fact? Fact { get; set; }
     }
 }

@@ -9,6 +9,5 @@ namespace FactOfHuman.Models
         public TargetType TargetType { get; set; } = TargetType.Post; // Post | Fact
         public Guid TargetId { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
     }
 }

@@ -110,6 +110,22 @@
   },
   {
     "ContainingType": "FactOfHuman.Controllers.AuthController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/Auth/Delete-User/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.AuthController",
     "Method": "GetAllUser",
     "RelativePath": "api/Auth/Get-all-user",
     "HttpMethod": "GET",
@@ -356,6 +372,59 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.CommentController",
+    "Method": "AdminDeleteComment",
+    "RelativePath": "api/Comment/Admin-Delete-Comment/{commentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.CommentController",
+    "Method": "DeleteComment",
+    "RelativePath": "api/Comment/Delete-Comment/{commentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.CommentController",
+    "Method": "GetAllComments",
+    "RelativePath": "api/Comment/Get-All-Comment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "take",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FactOfHuman.Controllers.CommentController",
