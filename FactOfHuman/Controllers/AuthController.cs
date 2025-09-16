@@ -3,6 +3,7 @@ using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Token;
 using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
+using FactOfHuman.Extensions;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Google.Apis.Util;
@@ -21,12 +22,14 @@ namespace FactOfHuman.Controllers
         private readonly FactOfHumanDbContext _context;
         private readonly IEmailService _emailService;
         private readonly IWebHostEnvironment _env;
-        public AuthController(IAuthService authService, FactOfHumanDbContext dbContext,IEmailService emailService, IWebHostEnvironment env)
+        private readonly IFileSerivce _fileService;
+        public AuthController(IAuthService authService, FactOfHumanDbContext dbContext,IEmailService emailService, IWebHostEnvironment env, IFileSerivce fileService)
         {
             _authService = authService;
             _context = dbContext;
             _emailService = emailService;
             _env = env;
+            _fileService = fileService;
         }
         [HttpPost("register")]
         [AllowAnonymous]
@@ -81,7 +84,7 @@ namespace FactOfHuman.Controllers
         {
             if(userId == null)
             {
-                userId = GetUserIdFromClaims();
+                userId = User.getUserId();
             }
             if(userId == null)
             {
@@ -108,45 +111,14 @@ namespace FactOfHuman.Controllers
         [Consumes("multipart/form-data")]
         public async Task<ActionResult<UserDto>> AdminUpdateUser([FromRoute] Guid userId,[FromQuery] Role role, [FromForm] AdminUpdateUserDto adminUpdateUserDto)
         {
-            string avatarUrl = string.Empty;
+            string avatarUrl = null;
             // Lấy đường dẫn file cũ
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
-            string? oldAvatarPath = null;
-            if (!string.IsNullOrEmpty(user?.AvatarUrl))
-            {
-                oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), user.AvatarUrl.TrimStart('/'));
-            }
-
             if (adminUpdateUserDto.AvatarUrl != null && adminUpdateUserDto.AvatarUrl.Length > 0)
             {
-                var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                var uploadFolder = Path.Combine(webrootPath, "uploads");
-                Directory.CreateDirectory(uploadFolder);
-
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(adminUpdateUserDto.AvatarUrl.FileName)}";
-                var filePath = Path.Combine(uploadFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await adminUpdateUserDto.AvatarUrl.CopyToAsync(stream);
-                }
-
-                avatarUrl = $"/uploads/{fileName}";
-
-                // Xóa file cũ
-                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
-                {
-                    try
-                    {
-                        System.IO.File.Delete(oldAvatarPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
-                    }
-                }
+                _fileService.DeleteFile(user.AvatarUrl);
+                avatarUrl = _fileService.SaveFile(adminUpdateUserDto.AvatarUrl, "uploads");
             }
-
             try
             {
                 var updatedUser = await _authService.AdminUpdateUser(userId,role, adminUpdateUserDto, avatarUrl);
@@ -162,50 +134,20 @@ namespace FactOfHuman.Controllers
         [Consumes("multipart/form-data")]
         public async Task<ActionResult<UserDto>> UpdateUser([FromForm] UpdateUserDto updateUserDto )
         {
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             if (userId == null)
             {
                 return Unauthorized(new { Message = "Invalid or missing user ID in token" });
             }
-            string avatarUrl = string.Empty;
+            string avatarUrl = null;
             // Lấy đường dẫn file cũ
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId.Value);
-            string? oldAvatarPath = null;
-            if (!string.IsNullOrEmpty(user?.AvatarUrl))
-            {
-                oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), user.AvatarUrl.TrimStart('/'));
-            }
 
             if (updateUserDto.AvatarUrl != null && updateUserDto.AvatarUrl.Length > 0)
             {
-                var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                var uploadFolder = Path.Combine(webrootPath, "uploads");
-                Directory.CreateDirectory(uploadFolder);
-
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(updateUserDto.AvatarUrl.FileName)}";
-                var filePath = Path.Combine(uploadFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await updateUserDto.AvatarUrl.CopyToAsync(stream);
-                }
-
-                avatarUrl = $"/uploads/{fileName}";
-
-                // Xóa file cũ
-                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
-                {
-                    try
-                    {
-                        System.IO.File.Delete(oldAvatarPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
-                    }
-                }
+                _fileService.DeleteFile(user.AvatarUrl);
+                avatarUrl = _fileService.SaveFile(updateUserDto.AvatarUrl, "uploads");
             }
-
             try
             {
                 var updatedUser = await _authService.UpdateUser(userId!.Value, updateUserDto,avatarUrl);
@@ -215,15 +157,6 @@ namespace FactOfHuman.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-        private Guid? GetUserIdFromClaims()
-        {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
-            {
-                return null;
-            }
-            return userId;
         }
         [HttpGet("activate")]
         public async Task<IActionResult> Activate([FromQuery] string email, [FromQuery(Name = "activeToken")] string token)
@@ -260,20 +193,21 @@ namespace FactOfHuman.Controllers
             html = html.Replace("{{Username}}", user.Name)
                 .Replace("{{ActivationLink}}", activationLink);
             await _emailService.SendEmailAsync(email,"Active email",html);
-            return Redirect($"https://fact-of-human.web.app/");
+            //return Redirect($"https://fact-of-human.web.app/");
+            return Ok(value: new { message = "Gửi lại thành công, vui lòng kích hoạt lại" });
         }
 
         [Authorize(Roles = "Admin")]
         [HttpGet("Get-all-user")]
-        public async Task<IActionResult>GetAllUser()
+        public async Task<IActionResult>GetAllUser(int skip = 0, int take = 30)
         {
-            return Ok(await _authService.GetAllUser());
+            return Ok(await _authService.GetAllUser(skip,take));
         }
         [Authorize]
         [HttpPut("Change-Password")]
         public async Task<ActionResult> ChangePassword([FromBody]ChangePasswordDto dto)
         {
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             if (userId == null) return Unauthorized(new { Message = "Invalid or missing user ID in token" });
             try
             {
@@ -286,14 +220,25 @@ namespace FactOfHuman.Controllers
         }
         [Authorize]
         [HttpDelete("Delete-User/{userId}")]
-        public async Task<IActionResult> DeleteUser([FromRoute]Guid userId)
+        public async Task<IActionResult> DeleteUser([FromRoute] Guid userId)
         {
-            if(userId == Guid.Empty)
+            Guid targetUserId = userId;
+            if (userId == Guid.Empty)
             {
-                var currentUserId = GetUserIdFromClaims();
-                return Ok(await _authService.DeleteUser(currentUserId.Value));
+                var currentUserId = User.getUserId();
+                if (currentUserId == null)
+                    return Unauthorized(new { Message = "Invalid or missing user ID in token" });
+                targetUserId = currentUserId.Value;
             }
-            return Ok(await _authService.DeleteUser(userId));
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == targetUserId);
+            if (user == null)
+                return NotFound(new { Message = "User not found" });
+
+            _fileService.DeleteFile(user.AvatarUrl);
+
+            var result = await _authService.DeleteUser(targetUserId);
+            return Ok(result);
         }
     }
 }

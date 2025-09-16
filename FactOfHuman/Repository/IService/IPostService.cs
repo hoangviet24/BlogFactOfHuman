@@ -1,4 +1,5 @@
 ﻿using FactOfHuman.Dto.Post;
+using FactOfHuman.Enum;
 
 namespace FactOfHuman.Repository.IService
 {
@@ -13,7 +14,7 @@ namespace FactOfHuman.Repository.IService
         Task<PostDto> GetByIdAsync(Guid id);
         Task<List<PostDto>> GetPostWithAuthor(Guid userId, int skip, int take);
         //Update Post
-        Task<PostDto> UpdatePostAsync(Guid id, CreatePostDto dto, string coverImage, Guid userId);
+        Task<PostDto> UpdatePostAsync(Guid id, StatusPost status, CreatePostDto dto, string coverImage, Guid userId);
         //Delete Post
         Task<bool> DeletePostAsync(Guid id, Guid userId);
         Task<bool> DeletePostAsyncWithAdmin(Guid id);

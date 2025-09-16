@@ -1,4 +1,5 @@
-﻿using FactOfHuman.Dto.UserDto;
+﻿using FactOfHuman.Dto.CommentDto;
+using FactOfHuman.Extensions;
 using FactOfHuman.Repository.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,7 @@ namespace FactOfHuman.Controllers
         public async Task<ActionResult> PostComment([FromBody] CreateCommentDto dto)
         {
             if (dto == null) return BadRequest("Dto is null");
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             if (userId == null) return Unauthorized("User ID not found in token");
             var comment = await _commentService.CreateCommentAsync(userId.Value, dto);
             return Ok(comment);
@@ -44,7 +45,7 @@ namespace FactOfHuman.Controllers
         [HttpDelete("Delete-Comment/{commentId}")]
         public async Task<ActionResult> DeleteComment([FromRoute]Guid commentId)
         {
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             if (userId == null) return Unauthorized("User ID not found in token");
             var result = await _commentService.DeleteCommentAsync(commentId, userId.Value);
             if (!result) return NotFound("Comment not found or you are not authorized to delete this comment");
@@ -58,14 +59,23 @@ namespace FactOfHuman.Controllers
             if (!result) return NotFound("Comment not found");
             return NoContent();
         }
-        private Guid? GetUserIdFromClaims()
+        [Authorize(Roles = "Author")]
+        [HttpDelete("Author-Delete-Comment/{commentId}")]
+        public async Task<ActionResult> AuthorDeleteComment([FromRoute] Guid commentId)
         {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
-            {
-                return null;
-            }
-            return userId;
+            var userId = User.getUserId();
+            var result = await _commentService.DeleteCommentOnPostAuthorAsync(commentId,userId.Value);
+            if (!result) return NotFound("Comment not found");
+            return NoContent();
+        }
+        [Authorize(Roles ="Author")]
+        [HttpDelete("Author-Delete-All-Comment-On-Post/{postId}")]
+        public async Task<ActionResult> AuthorDeleteAllCommentOnPost([FromRoute] Guid postId)
+        {
+            var userId = User.getUserId();
+            var result = await _commentService.DeleteAllCommentOnPostAuthorAsync(postId, userId.Value);
+            if (!result) return NotFound("Comment not found");
+            return NoContent();
         }
     }
 }

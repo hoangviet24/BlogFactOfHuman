@@ -17,7 +17,7 @@ namespace FactOfHuman.Repository.IService
         Task<string> ChangePassword(ChangePasswordDto changePasswordDto, Guid userId);
         string GenerateJwtToken(User user);
         Task<User> GetOrCreateUserFromOAuth(string email, string? name = null, string? avatarUrl = null);
-        Task<List<UserDto>> GetAllUser();
+        Task<List<UserDto>> GetAllUser(int skip, int take);
         Task<bool> DeleteUser(Guid userId);
     }
 }

@@ -30,7 +30,7 @@ namespace FactOfHuman.Controllers
             var botImage = string.Empty;
 
             var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-            var uploadFolder = Path.Combine(webrootPath, "posts");
+            var uploadFolder = Path.Combine(webrootPath, "postsblocks");
             Directory.CreateDirectory(uploadFolder);
 
             // Xử lý ảnh top nếu có
@@ -56,7 +56,7 @@ namespace FactOfHuman.Controllers
                 {
                     await dto.BottomImageUrl.CopyToAsync(stream);
                 }
-                botImage = $"/posts/{botFileName}";
+                botImage = $"/postsblocks/{botFileName}";
             }
 
             try
@@ -120,7 +120,7 @@ namespace FactOfHuman.Controllers
             var topImage = string.Empty;
             var botImage = string.Empty;
             var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-            var uploadFolder = Path.Combine(webrootPath, "posts");
+            var uploadFolder = Path.Combine(webrootPath, "postsblocks");
             Directory.CreateDirectory(uploadFolder);
             // Xử lý ảnh top nếu có
             if (dto.TopImageUrl != null && dto.TopImageUrl.Length > 0)

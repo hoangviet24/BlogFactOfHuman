@@ -6,6 +6,8 @@ using FactOfHuman.Extensions;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using System.Linq;
 
 namespace FactOfHuman.Repository.Service
 {
@@ -23,6 +25,11 @@ namespace FactOfHuman.Repository.Service
 
         public async Task<PostDto> CreatePostAsync(CreatePostDto dto,string coverImage, Guid userId)
         {
+            var titleExists = await _context.Posts.AnyAsync(p => p.Title == dto.Title);
+            if (titleExists)
+            {
+                throw new Exception("Title already exists");
+            }
             var tag = await _context.Tags
                 .Where(tag => dto.Tags.Contains(tag.Id))
                 .ToListAsync();
@@ -42,35 +49,42 @@ namespace FactOfHuman.Repository.Service
             var postDto = _mapper.Map<PostDto>(post);
             return postDto;
         }
-
         public async Task<bool> DeletePostAsync(Guid id, Guid userId)
         {
-            var deletePost = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id && p.AuthorId == userId);
-            var deleteComment = await _context.Comments.Where(c => c.PostId == id).ToListAsync();
-            if (deletePost == null)
-            {
-                throw new Exception("Post not found");
-            }
-            _context.Comments.RemoveRange(deleteComment);
-            _context.Posts.Remove(deletePost);
-            _context.SaveChanges();
-            return await Task.FromResult(true);
-        }
+            const int batchSize = 500000;
 
+            _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
+
+            while (true)
+            {
+                var deletedComments = await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE TOP(@p0) FROM Comments WHERE PostId = @p1",
+                    batchSize, id);
+
+                if (deletedComments == 0)
+                    break;
+            }
+
+            var deletedPosts = await _context.Posts
+                .Where(p => p.Id == id && p.AuthorId == userId)
+                .ExecuteDeleteAsync();
+
+            if (deletedPosts == 0)
+                throw new Exception("Post not found");
+
+            return true;
+        }
         public async Task<bool> DeletePostAsyncWithAdmin(Guid id)
         {
-            var deletePost = _context.Posts.FirstOrDefault(p => p.Id == id);
-            var deleteComment = await _context.Comments.Where(c => c.PostId == id).ToListAsync();
+
+            await _context.Comments.Where(c => c.PostId == id).ExecuteDeleteAsync();
+            var deletePost = _context.Posts.Where(p => p.Id == id).ExecuteDeleteAsync();
             if (deletePost == null)
             {
                 throw new Exception("Post not found");
             }
-            _context.Comments.RemoveRange(deleteComment);
-            _context.Posts.Remove(deletePost);
-            _context.SaveChanges();
             return await Task.FromResult(true);
         }
-
         public async Task<List<PostDto>> GetAllAsync(int skip, int take)
         {
             var post = await _context.Posts
@@ -84,7 +98,6 @@ namespace FactOfHuman.Repository.Service
             var postdto = _mapper.Map<List<PostDto>>(post);
             return postdto;
         }
-
         public async Task<PostDto> GetByIdAsync(Guid id)
         {
             var post = await _context.Posts
@@ -103,7 +116,6 @@ namespace FactOfHuman.Repository.Service
                 return postdto;
             }
         }
-
         public async Task<List<PostDto>> GetByNamePostAsync(string name, int skip, int take)
         {
             var post = await _context.Posts
@@ -153,23 +165,42 @@ namespace FactOfHuman.Repository.Service
             return postdto;
         }
 
-        public async Task<PostDto> UpdatePostAsync(Guid id, CreatePostDto dto, string coverImage, Guid userId)
+        public async Task<PostDto> UpdatePostAsync(Guid id, StatusPost status, CreatePostDto dto, string coverImage, Guid userId)
         {
-            var postId = _context.Posts.FirstOrDefault(p => p.Id == id);
-            if (postId == null)
-            {
+            var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            if (post == null)
                 throw new Exception("Post not found");
+
+            var validTagIds = dto.Tags?.Where(t => t.HasValue).Select(t => t.Value).ToList() ?? new List<Guid>();
+
+            Console.WriteLine($"Valid Tags Count: {validTagIds.Count}");
+
+            if (validTagIds.Count > 0)
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE FROM PostTag WHERE PostId = {0}", post.Id);
+
+                var newTags = await _context.Tags
+                    .Where(t => validTagIds.Contains(t.Id))
+                    .ToListAsync();
+
+                post.Tags = newTags;
             }
-            postId.Slug = SlugHelper.GenerateSlug(dto.Title);
-            postId.Title = dto.Title;
-            postId.Summary = dto.Summary;
-            postId.CategoryId = dto.CategoryId;
-            postId.CoverImage = coverImage;
-            postId.ReadingMinutes = dto.ReadingMinutes;
-            postId.UpdatedAt = DateTime.UtcNow;
-            _context.SaveChanges();
-            var postDto = _mapper.Map<PostDto>(postId);
-            return await Task.FromResult(postDto);
+            post.Slug = SlugHelper.GenerateSlug(dto.Title);
+            post.Title = dto.Title ?? post.Title;
+            post.Summary = dto.Summary ?? post.Summary;
+            post.Status = status;
+            post.CategoryId = dto.CategoryId ?? post.CategoryId;
+            post.CoverImage = coverImage ?? post.CoverImage;
+            post.ReadingMinutes = dto.ReadingMinutes;
+            post.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+            var updatedPost = await _context.Posts
+            .Include(p => p.Tags)
+            .FirstOrDefaultAsync(p => p.Id == post.Id);
+            return _mapper.Map<PostDto>(updatedPost);
         }
+
     }
 }

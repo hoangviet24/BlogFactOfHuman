@@ -12,11 +12,10 @@ namespace FactOfHuman.Models
         public StatusPost Status { get; set; } = StatusPost.Draft; // Draft | Published | Archived
         public Guid AuthorId { get; set; }
         public User Author { get; set; } = null!;
-
-        public Guid CategoryId { get; set; }
+        public Guid? CategoryId { get; set; }
         public Category Category { get; set; } = null!;
 
-        public List<Tag> Tags { get; set; } = new();
+        public List<Tag>? Tags { get; set; }
         public string CoverImage { get; set; } = string.Empty;
 
         public DateTime PublishedAt { get; set; } = DateTime.UtcNow;

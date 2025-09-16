@@ -279,23 +279,34 @@ namespace FactOfHuman.Repository.Service
             return await Task.FromResult(userDto);
         }
 
-        public async Task<List<UserDto>> GetAllUser()
+        public async Task<List<UserDto>> GetAllUser(int skip, int take)
         {
-            var user = await _context.Users.ToListAsync();
+            var user = await _context.Users.Skip(skip).Take(take).ToListAsync();
             var useDto = _mapper.Map<List<UserDto>>(user);
             return useDto;
         }
 
-        public Task<bool> DeleteUser(Guid userId)
+        public async Task<bool> DeleteUser(Guid userId)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            const int batchSize = 500000;
+
+            _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
+
+            while (true)
+            {
+                var deletedComments = await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE TOP(@p0) FROM Comments WHERE UserId = @p1",
+                    batchSize, userId);
+
+                if (deletedComments == 0)
+                    break;
+            }
+            var user = _context.Users.Where(u => u.Id == userId).ExecuteDeleteAsync();
             if (user == null)
             {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-            return Task.FromResult(true);
+            return await Task.FromResult(true);
         }
     }
 }

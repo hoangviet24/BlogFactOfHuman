@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FactOfHuman.Data;
 using FactOfHuman.Dto.CommentDto;
-using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,7 @@ namespace FactOfHuman.Repository.Service
         }
         public async Task<CommentDto> CreateCommentAsync(Guid userId, CreateCommentDto dto)
         {
-            if(dto.PostId == null && dto.FactId == null)
+            if(dto.PostId == null)
             {
                 throw new ArgumentException("PostId or FactId cannot be null");
             }
@@ -35,6 +34,12 @@ namespace FactOfHuman.Repository.Service
             await _context.SaveChangesAsync();
             var commentDto = _mapper.Map<CommentDto>(comment);
             return commentDto;
+        }
+
+        public async Task<bool> DeleteAllCommentOnPostAuthorAsync(Guid postId, Guid postAuthorId)
+        {
+            var comments = await _context.Comments.Where(c => c.PostId == postId && c.Post.AuthorId == postAuthorId).ExecuteDeleteAsync();
+            return comments > 0;
         }
 
         public Task<bool> DeleteCommentAsync(Guid commentId, Guid userId)
@@ -61,9 +66,22 @@ namespace FactOfHuman.Repository.Service
             return Task.FromResult(true);
         }
 
+        public Task<bool> DeleteCommentOnPostAuthorAsync(Guid commentId, Guid postAuthorId)
+        {
+            var comment = _context.Comments.FirstOrDefault(c => c.Id == commentId && c.Post.AuthorId == postAuthorId);
+            if (comment == null)
+            {
+                return Task.FromResult(false);
+            }
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+            return Task.FromResult(true);
+        }
+
         public async Task<List<CommentDto>> GetAllCommentAsync(int skip, int take)
         {
             var comments = _context.Comments
+                .AsNoTracking()
                 .Include(c => c.User)
                 .Include(c => c.Post)
                 .Skip(skip)
@@ -86,9 +104,18 @@ namespace FactOfHuman.Repository.Service
             return await Task.FromResult(commentDtos);
         }
 
-        public Task<CommentDto> UpdateCommentAsync(Guid userId, CreateCommentDto dto)
+        public Task<CommentDto> UpdateCommentAsync(Guid userId, CommentDto dto)
         {
-            throw new NotImplementedException();
+            var comment = _context.Comments.FirstOrDefault(c => c.Id == dto.Id && c.UserId == userId);
+            if (comment == null)
+            {
+                throw new Exception("Comment not found or you are not authorized to update this comment");
+            }
+            comment.Content = dto.Content;
+            _context.Comments.Update(comment);
+            _context.SaveChanges();
+            var commentDto = _mapper.Map<CommentDto>(comment);
+            return Task.FromResult(commentDto);
         }
     }
 }

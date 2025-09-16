@@ -1,5 +1,4 @@
 ﻿using FactOfHuman.Dto.CommentDto;
-using FactOfHuman.Dto.UserDto;
 
 namespace FactOfHuman.Repository.IService
 {
@@ -10,6 +9,8 @@ namespace FactOfHuman.Repository.IService
         Task<List<CommentDto>> GetCommentsByPostIdAsync(Guid postId, int skip, int take);
         Task<bool> DeleteCommentAsync(Guid commentId, Guid userId);
         Task<bool> DeleteCommentAsyncWithAdmin(Guid commentId);
-        Task<CommentDto> UpdateCommentAsync(Guid userId, CreateCommentDto dto);
+        Task<bool> DeleteCommentOnPostAuthorAsync(Guid commentId, Guid postAuthorId);
+        Task<bool> DeleteAllCommentOnPostAuthorAsync(Guid postId, Guid postAuthorId);
+        Task<CommentDto> UpdateCommentAsync(Guid userId, CommentDto dto);
     }
 }

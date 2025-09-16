@@ -2,6 +2,8 @@
 using FactOfHuman.Data;
 using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.Post;
+using FactOfHuman.Enum;
+using FactOfHuman.Extensions;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.AspNetCore.Authorization;
@@ -19,35 +21,24 @@ namespace FactOfHuman.Controllers
         private readonly IPostService _postService;
         private readonly IWebHostEnvironment _env;
         private readonly FactOfHumanDbContext _context;
-        public PostController(IPostService postService, IWebHostEnvironment env, FactOfHumanDbContext context)
+        private readonly IFileSerivce _fileservice;
+        public PostController(IPostService postService, IWebHostEnvironment env, FactOfHumanDbContext context, IFileSerivce fileservice)
         {
             _postService = postService;
             _env = env;
             _context = context;
+            _fileservice = fileservice;
         }
-        [Authorize(Roles ="Author")]
+        [Authorize(Roles ="Author,Admin")]
         [HttpPost("Post")]
         [Consumes("multipart/form-data")]
         public async Task<ActionResult<PostDto>> CreatePost([FromForm] CreatePostDto? dto)
         {
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             string coverImage = string.Empty;
             if (dto.CoverImage != null && dto.CoverImage.Length > 0)
             {
-                var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                var uploadFolder = Path.Combine(webrootPath, "posts");
-                Directory.CreateDirectory(uploadFolder);
-
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.CoverImage.FileName)}";
-                var filePath = Path.Combine(uploadFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await dto.CoverImage.CopyToAsync(stream);
-                }
-
-                coverImage = $"/posts/{fileName}";
-                
+                coverImage = _fileservice.SaveFile(dto.CoverImage, "posts");
             }
             try
             {
@@ -60,19 +51,10 @@ namespace FactOfHuman.Controllers
         }
         [HttpGet("Get-All")]
         [AllowAnonymous]
-        public async Task<ActionResult<List<PostDto>>> Getall(int skip =0,int take = 30)
+        public async Task<ActionResult<List<PostDto>>> Getall(int skip = 0,int take = 30)
         {
             var post = await _postService.GetAllAsync(skip, take);
             return Ok(post);
-        }
-        private Guid? GetUserIdFromClaims()
-        {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
-            {
-                return null;
-            }
-            return userId;
         }
         [HttpGet("Get-By-Id/{id}")]
         [AllowAnonymous]
@@ -106,7 +88,7 @@ namespace FactOfHuman.Controllers
         [HttpGet("Get-With-Author")]
         public async Task<ActionResult<List<PostDto>>> GetPostWithAuthor(int skip = 0, int take = 30)
         {
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             if (userId == null)
             {
                 return Unauthorized("Invalid user ID.");
@@ -117,44 +99,20 @@ namespace FactOfHuman.Controllers
         [Authorize(Roles = "Author")]
         [HttpPut("Update/{id}")]
         [Consumes("multipart/form-data")]
-        public async Task<ActionResult<PostDto>> UpdatePost([FromRoute] Guid id, [FromForm] CreatePostDto dto)
+        public async Task<ActionResult<PostDto>> UpdatePost([FromRoute] Guid id, [FromForm] CreatePostDto dto, [FromQuery] StatusPost status)
         {
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             var postId = await _context.Posts.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
             string coverImage = string.Empty;
-            string oldAvatarPath = string.Empty;
-            if (!string.IsNullOrEmpty(postId?.CoverImage))
-            {
-                oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), postId.CoverImage.TrimStart('/'));
-            }
+            
             if (dto.CoverImage != null && dto.CoverImage.Length > 0)
             {
-                var webrootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                var uploadFolder = Path.Combine(webrootPath, "posts");
-                Directory.CreateDirectory(uploadFolder);
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.CoverImage.FileName)}";
-                var filePath = Path.Combine(uploadFolder, fileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await dto.CoverImage.CopyToAsync(stream);
-                }
-                coverImage = $"/posts/{fileName}";
-                // Xóa file cũ
-                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
-                {
-                    try
-                    {
-                        System.IO.File.Delete(oldAvatarPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
-                    }
-                }
+                _fileservice.DeleteFile(postId.CoverImage);
+                coverImage = _fileservice.SaveFile(dto.CoverImage, "posts");
             }
             try
             {
-                var post = await _postService.UpdatePostAsync(id, dto, coverImage, userId.Value);
+                var post = await _postService.UpdatePostAsync(id,status, dto, coverImage, userId.Value);
                 return Ok(post);
             }
             catch (Exception ex)
@@ -172,7 +130,7 @@ namespace FactOfHuman.Controllers
             {
                 oldAvatarPath = Path.Combine(_env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), postId.CoverImage.TrimStart('/'));
             }
-            var userId = GetUserIdFromClaims();
+            var userId = User.getUserId();
             if (userId == null)
             {
                 return Unauthorized("Invalid user ID.");
@@ -188,18 +146,7 @@ namespace FactOfHuman.Controllers
                 {
                     await _postService.DeletePostAsync(id, userId.Value);
                 }
-                // Xóa file cũ
-                if (!string.IsNullOrEmpty(oldAvatarPath) && System.IO.File.Exists(oldAvatarPath))
-                {
-                    try
-                    {
-                        System.IO.File.Delete(oldAvatarPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Không xóa được ảnh cũ: {ex.Message}");
-                    }
-                }
+                _fileservice.DeleteFile(oldAvatarPath);
                 return Ok(new { message = "Post deleted successfully." });
             }
             catch (Exception ex)
