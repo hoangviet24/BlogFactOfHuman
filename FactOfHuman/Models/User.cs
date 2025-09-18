@@ -11,7 +11,7 @@ namespace FactOfHuman.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string AvatarUrl { get; set; } = string.Empty ;
         public string Bio { get; set; } = string.Empty;
-        public Role Role { get; set; } = Role.Reader; // Reader | Contributor | Admin
+        public Role Role { get; set; } = Role.Reader; // Reader | Author | Admin
         public AuthProvider AuthProvider { get; set; } = AuthProvider.Local; // Local | Google | Facebook
         public string activeToken { get; set; } = string.Empty;
         public DateTime ActiveTokenExpireAt { get; set; } = DateTime.UtcNow;

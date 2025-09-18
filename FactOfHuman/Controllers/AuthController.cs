@@ -132,7 +132,7 @@ namespace FactOfHuman.Controllers
         [Authorize]
         [HttpPut("update-user")]
         [Consumes("multipart/form-data")]
-        public async Task<ActionResult<UserDto>> UpdateUser([FromForm] UpdateUserDto updateUserDto )
+        public async Task<ActionResult<UserDto>> UpdateUser([FromForm] UpdateUserDto updateUserDto,[FromQuery] Role role )
         {
             var userId = User.getUserId();
             if (userId == null)
@@ -150,7 +150,7 @@ namespace FactOfHuman.Controllers
             }
             try
             {
-                var updatedUser = await _authService.UpdateUser(userId!.Value, updateUserDto,avatarUrl);
+                var updatedUser = await _authService.UpdateUser(userId!.Value, updateUserDto,avatarUrl,role);
                 return Ok(updatedUser);
             }
             catch (Exception ex)

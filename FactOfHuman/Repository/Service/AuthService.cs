@@ -254,10 +254,12 @@ namespace FactOfHuman.Repository.Service
             return user;
         }
 
-        public async Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto,string avatarUrl)
+        public async Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto,string avatarUrl, Role role)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
-            if(user == null)
+            Console.WriteLine($"Info user: {user.Role}");
+            Console.WriteLine($"Info Role: {Role.Admin}");
+            if (user == null)
             {
                 throw new KeyNotFoundException($"User with ID {userId} not found");
             }
@@ -266,12 +268,44 @@ namespace FactOfHuman.Repository.Service
                 if(user.AuthProvider == AuthProvider.Google)
                 {
                     user.Bio = updateUserDto.Bio ?? user.Bio;
+                    if (user.Role == Role.Author || user.Role == Role.Reader)
+                    {
+                        user.Role = role;
+                    }
+                    else if (user.Role == Role.Admin)
+                    {
+                        user.Role = role;
+                    }
+                    else
+                    {
+                        throw new BadHttpRequestException("Role is not found");
+                    }
                 }
                 else
                 {
                     user.Name = updateUserDto.Name ?? user.Name;
                     user.AvatarUrl = avatarUrl ?? user.AvatarUrl;
                     user.Bio = updateUserDto.Bio ?? user.Bio;
+                    if (user.Role == Role.Author || user.Role == Role.Reader)
+                    {
+                        if(role == Role.Admin)
+                        {
+                            throw new BadHttpRequestException("You cannot change to Admin role");
+                        }
+                        user.Role = role;
+                    }
+                    else if (user.Role == Role.Admin)
+                    {
+                        if(role != Role.Admin)
+                        {
+                            throw new BadHttpRequestException("You cannot change Admin role");
+                        }
+                        user.Role = Role.Admin;
+                    }
+                    else
+                    {
+                        throw new BadHttpRequestException("Role is not found");
+                    }
                 }
                 await _context.SaveChangesAsync();
             }
@@ -301,8 +335,8 @@ namespace FactOfHuman.Repository.Service
                 if (deletedComments == 0)
                     break;
             }
-            var user = _context.Users.Where(u => u.Id == userId).ExecuteDeleteAsync();
-            if (user == null)
+            var user = await _context.Users.Where(u => u.Id == userId).ExecuteDeleteAsync();
+            if (user == 0)
             {
                 return await Task.FromResult(false);
             }

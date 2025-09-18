@@ -251,6 +251,11 @@
         "Name": "AvatarUrl",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -984,6 +989,79 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.ReactionController",
+    "Method": "CountReactionsByTarget",
+    "RelativePath": "api/Reaction/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "targetId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "targetType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "typeReaction",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.ReactionController",
+    "Method": "Create",
+    "RelativePath": "api/Reaction/create/{targetType}/{typeReaction}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "targetType",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "typeReaction",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "FactOfHuman.Dto.Reaction.CreateReacionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.ReactionController",
+    "Method": "GetAll",
+    "RelativePath": "api/Reaction/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "take",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FactOfHuman.Controllers.TagController",

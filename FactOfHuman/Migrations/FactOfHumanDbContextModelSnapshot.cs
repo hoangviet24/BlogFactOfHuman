@@ -22,25 +22,6 @@ namespace FactOfHuman.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FactOfHuman.Models.Bookmark", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TargetId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("TargetType")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("UserId", "TargetId", "TargetType");
-
-                    b.ToTable("BookMarks");
-                });
-
             modelBuilder.Entity("FactOfHuman.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -107,7 +88,7 @@ namespace FactOfHuman.Migrations
                     b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CoverImage")
@@ -318,17 +299,6 @@ namespace FactOfHuman.Migrations
                     b.ToTable("PostTag");
                 });
 
-            modelBuilder.Entity("FactOfHuman.Models.Bookmark", b =>
-                {
-                    b.HasOne("FactOfHuman.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("FactOfHuman.Models.Comment", b =>
                 {
                     b.HasOne("FactOfHuman.Models.Post", "Post")
@@ -356,9 +326,7 @@ namespace FactOfHuman.Migrations
 
                     b.HasOne("FactOfHuman.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Author");
 

@@ -3,56 +3,52 @@
   "WorkspaceRootPath": "D:\\C#\\FactOfHuman\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\post\\createpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\post\\createpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\iservice\\ipostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\iservice\\ipostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\enum\\authprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\enum\\authprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\reactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\reactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\enum\\statuspost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\enum\\statuspost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\reactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\reactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\post\\postdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\post\\postdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\iservice\\ireactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\iservice\\ireactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\postblockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\postblockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\reaction\\reactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\reaction\\reactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\reaction\\createreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\reaction\\createreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\dto\\post\\createpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\post\\createpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,32 +63,12 @@
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\dto\\tag\\tagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\models\\postblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\models\\postblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\models\\reaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\models\\reaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\postblockservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\postblockservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\service\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\repository\\service\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\enum\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\enum\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\models\\bookmark.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\models\\bookmark.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\repository\\iservice\\ipostblockservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -110,24 +86,126 @@
       "DocumentGroups": [
         {
           "DockedWidth": 142,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CreatePostDto.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
-              "RelativeToolTip": "FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T04:30:17.13Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "FactOfHuman\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAAAIYAAABtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-18T02:53:30.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PostService.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\PostService.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\PostService.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\PostService.cs",
+              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\PostService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAkwCUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T07:53:38.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\AuthService.cs",
+              "ViewState": "AgIAAPMAAAAAAAAAAAAqwCoBAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T07:31:27.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReactionController.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\ReactionController.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\ReactionController.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\ReactionController.cs",
+              "RelativeToolTip": "FactOfHuman\\Controllers\\ReactionController.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAAC4AAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T07:00:52.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReactionService.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\ReactionService.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\ReactionService.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\ReactionService.cs",
+              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\ReactionService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwBcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T06:49:36.399Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IReactionService.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IReactionService.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\IService\\IReactionService.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IReactionService.cs",
+              "RelativeToolTip": "FactOfHuman\\Repository\\IService\\IReactionService.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAwAAABvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T06:45:44.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CreateReacionDto.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Reaction\\CreateReacionDto.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Reaction\\CreateReacionDto.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Reaction\\CreateReacionDto.cs",
+              "RelativeToolTip": "FactOfHuman\\Dto\\Reaction\\CreateReacionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T06:44:12.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Mapper\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Mapper\\MappingProfile.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Mapper\\MappingProfile.cs",
+              "RelativeToolTip": "FactOfHuman\\Mapper\\MappingProfile.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAwC8AAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T08:25:09.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReactionDto.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Reaction\\ReactionDto.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Reaction\\ReactionDto.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Reaction\\ReactionDto.cs",
+              "RelativeToolTip": "FactOfHuman\\Dto\\Reaction\\ReactionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T06:42:34.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "PostController.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\PostController.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\PostController.cs",
@@ -135,159 +213,11 @@
               "RelativeToolTip": "FactOfHuman\\Controllers\\PostController.cs",
               "ViewState": "AgIAAFwAAAAAAAAAAAAqwHEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T03:50:20.285Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\User.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Models\\User.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\User.cs",
-              "RelativeToolTip": "FactOfHuman\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T03:49:18.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\AuthService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABoAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T03:15:40.911Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IPostService.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IPostService.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\IService\\IPostService.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IPostService.cs",
-              "RelativeToolTip": "FactOfHuman\\Repository\\IService\\IPostService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T07:31:32.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PostService.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\PostService.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\PostService.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\PostService.cs",
-              "RelativeToolTip": "FactOfHuman\\Repository\\Service\\PostService.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAADwv14AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T09:02:14.62Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "FactOfHuman\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAAAG8AAABuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T08:02:40.675Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CommentController.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\CommentController.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\CommentController.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\CommentController.cs",
-              "RelativeToolTip": "FactOfHuman\\Controllers\\CommentController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T04:56:01.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PostBlockController.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\PostBlockController.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\PostBlockController.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\PostBlockController.cs",
-              "RelativeToolTip": "FactOfHuman\\Controllers\\PostBlockController.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAqwBoAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T11:03:43.739Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PostDto.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\PostDto.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Post\\PostDto.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\PostDto.cs",
-              "RelativeToolTip": "FactOfHuman\\Dto\\Post\\PostDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T09:05:22.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "StatusPost.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\StatusPost.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Enum\\StatusPost.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\StatusPost.cs",
-              "RelativeToolTip": "FactOfHuman\\Enum\\StatusPost.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T11:15:25.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T03:50:20.285Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\CategoryController.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "FactOfHuman\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T02:44:06.498Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AuthProvider.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\AuthProvider.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Enum\\AuthProvider.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\AuthProvider.cs",
-              "RelativeToolTip": "FactOfHuman\\Enum\\AuthProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T11:15:21.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Program.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Program.cs",
@@ -295,60 +225,35 @@
               "RelativeToolTip": "FactOfHuman\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T02:40:46.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T02:40:46.958Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Bookmark.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\Bookmark.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Models\\Bookmark.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\Bookmark.cs",
-              "RelativeToolTip": "FactOfHuman\\Models\\Bookmark.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "CreatePostDto.cs",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
+              "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
+              "RelativeToolTip": "FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T11:15:14.751Z"
+              "WhenOpened": "2025-09-16T04:30:17.13Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Mapper\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Mapper\\MappingProfile.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Mapper\\MappingProfile.cs",
-              "RelativeToolTip": "FactOfHuman\\Mapper\\MappingProfile.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAkwCEAAABbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T08:25:09.789Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Role.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\Role.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Enum\\Role.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Enum\\Role.cs",
-              "RelativeToolTip": "FactOfHuman\\Enum\\Role.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T11:15:22.239Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 6,
               "Title": "CategoryService.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\CategoryService.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\CategoryService.cs",
               "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\CategoryService.cs",
               "RelativeToolTip": "FactOfHuman\\Repository\\Service\\CategoryService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAiwEIAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEIAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-05T09:16:35.793Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 16,
               "Title": "PostBlockService.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\PostBlockService.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\PostBlockService.cs",
@@ -360,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "Comment.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\Comment.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Models\\Comment.cs",
@@ -372,7 +277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "TagDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Tag\\TagDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Tag\\TagDto.cs",
@@ -384,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 15,
               "Title": "PostBlock.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\PostBlock.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Models\\PostBlock.cs",
@@ -396,19 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Reaction.cs",
-              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\Reaction.cs",
-              "RelativeDocumentMoniker": "FactOfHuman\\Models\\Reaction.cs",
-              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\Models\\Reaction.cs",
-              "RelativeToolTip": "FactOfHuman\\Models\\Reaction.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T11:15:47.353Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 17,
               "Title": "IPostBlockService.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\IService\\IPostBlockService.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Repository\\IService\\IPostBlockService.cs",
@@ -420,7 +313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 18,
               "Title": "UpdatePostBlockDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\UpdatePostBlockDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Post\\UpdatePostBlockDto.cs",

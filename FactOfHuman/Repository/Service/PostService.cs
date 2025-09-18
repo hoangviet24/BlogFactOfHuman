@@ -92,6 +92,8 @@ namespace FactOfHuman.Repository.Service
                 .Include(post => post.Block)
                 .Include(post => post.Author)
                 .Include(post => post.Category)
+                .OrderByDescending(post => post.Views)
+                .ThenByDescending(post => post.PublishedAt)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -122,6 +124,8 @@ namespace FactOfHuman.Repository.Service
                 .Include(post => post.Tags)
                 .Include(post => post.Block)
                 .Where(post => post.Title.Contains(name))
+                .OrderByDescending(post => post.Views)
+                .ThenByDescending(post => post.PublishedAt)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -138,6 +142,8 @@ namespace FactOfHuman.Repository.Service
                 .Include(post => post.Tags)
                 .Include(post => post.Block)
                 .Where(post => post.AuthorId == userId)
+                .OrderByDescending(post => post.Views)
+                .ThenByDescending(post => post.PublishedAt)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -154,6 +160,8 @@ namespace FactOfHuman.Repository.Service
                 .Include(post => post.Tags)
                 .Include(post => post.Block)
                 .Where(post => post.AuthorId == userId)
+                .OrderByDescending(post => post.Views)
+                .ThenByDescending(post => post.PublishedAt)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();

@@ -26,7 +26,12 @@ namespace FactOfHuman.Extensions
                 });
             }
             app.UseCors("AllowAll");
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "posts")),
+                RequestPath = "/posts"
+            });
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();

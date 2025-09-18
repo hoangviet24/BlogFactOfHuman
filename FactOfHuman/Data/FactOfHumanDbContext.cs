@@ -13,7 +13,6 @@ namespace FactOfHuman.Data
         public DbSet<Tag> Tags { get; set; } = null!;
         public DbSet<Post> Posts { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
-        public DbSet<Bookmark> BookMarks { get; set; } = null!;
         public DbSet<Reaction> Reactions { get; set; } = null!;
         public DbSet<PostBlock> PostBlocks { get; set; } = null!;
 
@@ -102,17 +101,6 @@ namespace FactOfHuman.Data
                 .HasOne(r => r.User)
                 .WithMany()
                 .HasForeignKey(r => r.UserId);
-
-            // Bookmark
-            modelBuilder.Entity<Bookmark>()
-                .HasKey(b => new { b.UserId, b.TargetId, b.TargetType }); // composite key
-            modelBuilder.Entity<Bookmark>()
-                .HasOne(b => b.User)
-                .WithMany()
-                .HasForeignKey(b => b.UserId);
-            modelBuilder.Entity<Bookmark>()
-                .Property(b => b.TargetType)
-                .HasConversion<string>(); // Enum to string
         }
     }
 }
