@@ -2,8 +2,6 @@
 {
     public enum TypeReaction
     {
-        Like,
-        Love,
-        Insightful
+        Like
     }
 }

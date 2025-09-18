@@ -51,20 +51,24 @@ namespace FactOfHuman.Repository.Service
         }
         public async Task<bool> DeletePostAsync(Guid id, Guid userId)
         {
-            const int batchSize = 500000;
+            //dùng khi có số lượng lớn
+            //{
+            //    const int batchSize = 500000;
 
-            _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
+            //    _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
 
-            while (true)
-            {
-                var deletedComments = await _context.Database.ExecuteSqlRawAsync(
-                    "DELETE TOP(@p0) FROM Comments WHERE PostId = @p1",
-                    batchSize, id);
+            //    while (true)
+            //    {
+            //        var deletedComments = await _context.Database.ExecuteSqlRawAsync(
+            //            "DELETE TOP(@p0) FROM Comments WHERE PostId = @p1",
+            //            batchSize, id);
 
-                if (deletedComments == 0)
-                    break;
-            }
-
+            //        if (deletedComments == 0)
+            //            break;
+            //    }
+            //}
+            await _context.Reactions.Where(r => r.TargetId == id).ExecuteDeleteAsync();
+            await _context.Comments.Where(c => c.PostId == id).ExecuteDeleteAsync();
             var deletedPosts = await _context.Posts
                 .Where(p => p.Id == id && p.AuthorId == userId)
                 .ExecuteDeleteAsync();
@@ -76,7 +80,7 @@ namespace FactOfHuman.Repository.Service
         }
         public async Task<bool> DeletePostAsyncWithAdmin(Guid id)
         {
-
+            await _context.Reactions.Where(r => r.TargetId == id).ExecuteDeleteAsync();
             await _context.Comments.Where(c => c.PostId == id).ExecuteDeleteAsync();
             var deletePost = _context.Posts.Where(p => p.Id == id).ExecuteDeleteAsync();
             if (deletePost == null)
@@ -171,6 +175,18 @@ namespace FactOfHuman.Repository.Service
             }
             var postdto = _mapper.Map<List<PostDto>>(post);
             return postdto;
+        }
+
+        public async Task<List<PostDto>> GetTop10Async()
+        {
+            var post = await _context.Posts
+                .Include(post => post.Tags)
+                .Include(post => post.Block)
+                .OrderByDescending(p => _context.Reactions.Count(r => r.TargetType == TargetType.Post && r.TargetId == p.Id))
+                .ThenByDescending(post => post.Views)
+                .Take(10)
+                .ToListAsync();
+            return _mapper.Map<List<PostDto>>(post);
         }
 
         public async Task<PostDto> UpdatePostAsync(Guid id, StatusPost status, CreatePostDto dto, string coverImage, Guid userId)

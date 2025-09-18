@@ -25,8 +25,8 @@ namespace FactOfHuman.Controllers
             return Ok(reactions);
         }
         [Authorize]
-        [HttpPost("create/{targetType}/{typeReaction}")]
-        public async Task<IActionResult> Create([FromRoute] TargetType targetType, [FromRoute] TypeReaction typeReaction, [FromBody] CreateReacionDto dto)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromQuery] TargetType targetType, [FromQuery] TypeReaction typeReaction, [FromBody] CreateReacionDto dto)
         {
             try
             {
@@ -39,13 +39,51 @@ namespace FactOfHuman.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [AllowAnonymous]
-        [HttpGet("count")]
-        public async Task<IActionResult> CountReactionsByTarget([FromQuery] Guid targetId, [FromQuery] TargetType targetType, [FromQuery] TypeReaction typeReaction)
+        [Authorize]
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var count = await _reactionService.CountReactionsByTargetAsync(targetId, targetType, typeReaction);
-            Console.WriteLine($"{targetType} ({(int)targetType}), {typeReaction} ({(int)typeReaction})");
-            return Ok(new { count });
+            try
+            {
+                var userId = User.getUserId();
+                if (userId == null) return Unauthorized(new { message = "You must be logged in to delete a reaction" });
+                var result = await _reactionService.DeleteAsync(id, userId.Value);
+                return Ok(new { message = "Reaction deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [AllowAnonymous]
+        [HttpGet("get-by-comment/{commentId}")]
+        public async Task<IActionResult> GetByComment([FromRoute] Guid commentId)
+        {
+            try
+            {
+                var count = await _reactionService.CountReactionsByTargetAsync(commentId, TargetType.Comment, TypeReaction.Like);
+                var reaction = await _reactionService.GetByCommentAsync(commentId);
+                return Ok(new {count,reaction});
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [AllowAnonymous]
+        [HttpGet("get-by-post/{postId}")]
+        public async Task<IActionResult> GetByPost([FromRoute] Guid postId)
+        {
+            try
+            {
+                var count = await _reactionService.CountReactionsByTargetAsync(postId, TargetType.Post, TypeReaction.Like); 
+                var reaction = await _reactionService.GetByPostAsync(postId);
+                return Ok(new {count,reaction});
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }

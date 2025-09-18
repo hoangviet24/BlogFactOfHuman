@@ -992,34 +992,8 @@
   },
   {
     "ContainingType": "FactOfHuman.Controllers.ReactionController",
-    "Method": "CountReactionsByTarget",
-    "RelativePath": "api/Reaction/count",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "targetId",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "targetType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "typeReaction",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FactOfHuman.Controllers.ReactionController",
     "Method": "Create",
-    "RelativePath": "api/Reaction/create/{targetType}/{typeReaction}",
+    "RelativePath": "api/Reaction/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -1027,16 +1001,32 @@
       {
         "Name": "targetType",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "typeReaction",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "dto",
         "Type": "FactOfHuman.Dto.Reaction.CreateReacionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.ReactionController",
+    "Method": "Delete",
+    "RelativePath": "api/Reaction/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],
@@ -1059,6 +1049,38 @@
         "Name": "take",
         "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.ReactionController",
+    "Method": "GetByComment",
+    "RelativePath": "api/Reaction/get-by-comment/{commentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.ReactionController",
+    "Method": "GetByPost",
+    "RelativePath": "api/Reaction/get-by-post/{postId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Guid",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

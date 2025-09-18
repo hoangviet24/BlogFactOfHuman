@@ -257,8 +257,6 @@ namespace FactOfHuman.Repository.Service
         public async Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto,string avatarUrl, Role role)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
-            Console.WriteLine($"Info user: {user.Role}");
-            Console.WriteLine($"Info Role: {Role.Admin}");
             if (user == null)
             {
                 throw new KeyNotFoundException($"User with ID {userId} not found");
@@ -322,19 +320,23 @@ namespace FactOfHuman.Repository.Service
 
         public async Task<bool> DeleteUser(Guid userId)
         {
-            const int batchSize = 500000;
+            // Dùng khi số lượng nhiều
+            //{
+            //    const int batchSize = 500000;
 
-            _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
+            //    _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
 
-            while (true)
-            {
-                var deletedComments = await _context.Database.ExecuteSqlRawAsync(
-                    "DELETE TOP(@p0) FROM Comments WHERE UserId = @p1",
-                    batchSize, userId);
+            //    while (true)
+            //    {
+            //        var deletedComments = await _context.Database.ExecuteSqlRawAsync(
+            //            "DELETE TOP(@p0) FROM Comments WHERE UserId = @p1",
+            //            batchSize, userId);
 
-                if (deletedComments == 0)
-                    break;
-            }
+            //        if (deletedComments == 0)
+            //            break;
+            //    }
+            //}
+            await _context.Comments.Where(c => c.UserId == userId).ExecuteDeleteAsync();
             var user = await _context.Users.Where(u => u.Id == userId).ExecuteDeleteAsync();
             if (user == 0)
             {

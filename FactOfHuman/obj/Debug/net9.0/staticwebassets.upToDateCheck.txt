@@ -15,6 +15,5 @@ wwwroot\posts\f3617c9c-10be-46a3-843c-721a2315801e.png
 wwwroot\posts\a3209b63-6232-4800-b6ac-55f40c42d985.png
 wwwroot\posts\c32c5f32-108c-413a-af16-d06f3a58c277.png
 wwwroot\posts\449ccdbe-84ac-43b9-8f27-20071431f987.png
-wwwroot\posts\0cea395e-04e9-44e8-b7f8-73867e68f411.png
 wwwroot\uploads\4eb19e65-832e-4b04-b855-960a0ef65ea5.png
 wwwroot\uploads\bd941e68-fa4e-4a42-a9e4-ff46c5c0d8ae.png

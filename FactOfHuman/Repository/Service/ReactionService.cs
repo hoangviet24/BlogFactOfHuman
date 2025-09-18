@@ -5,6 +5,7 @@ using FactOfHuman.Enum;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks.Dataflow;
 
 namespace FactOfHuman.Repository.Service
 {
@@ -70,21 +71,21 @@ namespace FactOfHuman.Repository.Service
 
         public async Task<ReactionDto> GetByCommentAsync(Guid commentId)
         {
-            var getId = await _context.Reactions.FindAsync(commentId);
+            var getId = await _context.Reactions.FirstOrDefaultAsync(r => r.TargetId == commentId);
             var reactionDto = _mapper.Map<ReactionDto>(getId);
             return await Task.FromResult(reactionDto);
         }
 
         public async Task<ReactionDto> GetByIdAsync(Guid id)
         {
-            var getId = await _context.Reactions.FindAsync(id);
+            var getId = await _context.Reactions.FirstOrDefaultAsync(r => r.Id == id);
             var reactionDto = _mapper.Map<ReactionDto>(getId);
             return await Task.FromResult(reactionDto);
         }
 
         public async Task<ReactionDto> GetByPostAsync(Guid postId)
         {
-            var getPost = await _context.Reactions.FindAsync(postId);
+            var getPost = await _context.Reactions.FirstOrDefaultAsync(r => r.TargetId == postId);
             var reactionDto = _mapper.Map<ReactionDto>(getPost);
             return await Task.FromResult(reactionDto);
         }

@@ -2,6 +2,6 @@
 {
     public enum StatusPost
     {
-        Draft , Published , Archived
+        Draft , Published 
     }
 }

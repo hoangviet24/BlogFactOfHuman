@@ -39,9 +39,9 @@ namespace FactOfHuman.Mapper
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Name))
                 .ForMember(dest => dest.statusComment, opt => opt.MapFrom(src => StatusComment.Visible.ToString()));
             // Map ReactionDto to Reaction
-            CreateMap<ReactionDto, Reaction>()
+            CreateMap<CreateReacionDto, Reaction>()
                 .ForMember(dest => dest.TargetType, opt => opt.MapFrom(src => TargetType.Post.ToString()))
-                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => TypeReaction.Love.ToString()))
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => TypeReaction.Like.ToString()))
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
             // Map Reaction to ReactionDto
             CreateMap<Reaction, ReactionDto>()
