@@ -1,4 +1,5 @@
 ﻿using FactOfHuman.Enum;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FactOfHuman.Dto.Post
 {
@@ -8,6 +9,7 @@ namespace FactOfHuman.Dto.Post
         public string? Summary { get; set; } 
         public List<Guid?> Tags { get; set; }
         public Guid? CategoryId { get; set; }
+        [FromForm]
         public IFormFile? CoverImage { get; set; }
         public int ReadingMinutes { get; set; }
     }

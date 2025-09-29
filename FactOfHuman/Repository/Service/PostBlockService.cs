@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FactOfHuman.Data;
 using FactOfHuman.Dto.Post;
+using FactOfHuman.Dto.PostBlock;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
 using Microsoft.EntityFrameworkCore;
@@ -81,10 +82,10 @@ namespace FactOfHuman.Repository.Service
             {
                 throw new BadHttpRequestException("Phải có 1 dòng có nội dung");
             }
-            postBlock.TopContent = dto.TopContent ?? string.Empty;
-            postBlock.TopImage = topImage ?? string.Empty;
-            postBlock.BottomContent = dto.BottomContent ?? string.Empty;
-            postBlock.BottomImage = botImage ?? string.Empty;
+            postBlock.TopContent = dto.TopContent ?? postBlock.TopContent;
+            postBlock.TopImage = topImage ?? postBlock.TopImage;
+            postBlock.BottomContent = dto.BottomContent ?? postBlock.BottomContent;
+            postBlock.BottomImage = botImage ?? postBlock.BottomImage;
             await _context.SaveChangesAsync();
             return postBlock;
         }

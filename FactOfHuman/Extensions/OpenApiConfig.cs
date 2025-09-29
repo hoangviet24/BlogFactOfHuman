@@ -20,18 +20,31 @@ namespace FactOfHuman.Extensions
                 {
                     options.Title = "FactOfHuman API";
                     options.Theme = ScalarTheme.BluePlanet;
-                    options.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
+                    //options.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
                     options.HideClientButton = true;
                     options.Layout = ScalarLayout.Modern;
                 });
             }
             app.UseCors("AllowAll");
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "posts")),
-                RequestPath = "/posts"
-            });
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "posts")),
+            //    RequestPath = "/posts"
+            //});
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "postsblocks")),
+            //    RequestPath = "/postsblocks"
+            //});
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+            //    RequestPath = "/uploads"
+            //});
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();

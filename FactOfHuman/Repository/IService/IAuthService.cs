@@ -10,7 +10,7 @@ namespace FactOfHuman.Repository.IService
     {
         Task<UserDto> Register(RegisterDto registerDto);
         Task<TokenResponseDto> Login(LoginDto loginDto);
-        Task<TokenResponseDto?> RefreshTokenAsync(RefreshTokenRequestDto request, Guid userId);
+        Task<TokenResponseDto?> RefreshTokenAsync(Guid userId, RefreshTokenRequestDto request);
         Task<UserDto> GetCurrentUser(Guid userId);
         Task<UserDto> AdminUpdateUser(Guid userId,Role role, AdminUpdateUserDto adminUpdateUserDto,string avatarUrl);
         Task<UserDto> UpdateUser(Guid userId, UpdateUserDto updateUserDto, string avatarUrl, Role role);

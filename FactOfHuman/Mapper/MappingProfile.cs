@@ -2,6 +2,7 @@
 using FactOfHuman.Dto.AuthDto;
 using FactOfHuman.Dto.CommentDto;
 using FactOfHuman.Dto.Post;
+using FactOfHuman.Dto.PostBlock;
 using FactOfHuman.Dto.Reaction;
 using FactOfHuman.Dto.Tag;
 using FactOfHuman.Dto.UserDto;
@@ -30,9 +31,9 @@ namespace FactOfHuman.Mapper
             //Map Post to PostDto
             CreateMap<Post, PostDto>()
                 .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()))
-                .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Block))
-                .ForMember(dest => dest.AuthorId, opt => opt.MapFrom(src => src.Author.Name))
-                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category.Name));
+                .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Block));
+                //.ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
+                //.ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
             // Map Commnet to CommentDto
             CreateMap<Comment, CommentDto>()
                 .ForMember(dest => dest.PostName, opt => opt.MapFrom(src => src.Post.Title))

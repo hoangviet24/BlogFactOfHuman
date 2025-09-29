@@ -51,22 +51,6 @@ namespace FactOfHuman.Repository.Service
         }
         public async Task<bool> DeletePostAsync(Guid id, Guid userId)
         {
-            //dùng khi có số lượng lớn
-            //{
-            //    const int batchSize = 500000;
-
-            //    _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
-
-            //    while (true)
-            //    {
-            //        var deletedComments = await _context.Database.ExecuteSqlRawAsync(
-            //            "DELETE TOP(@p0) FROM Comments WHERE PostId = @p1",
-            //            batchSize, id);
-
-            //        if (deletedComments == 0)
-            //            break;
-            //    }
-            //}
             await _context.Reactions.Where(r => r.TargetId == id).ExecuteDeleteAsync();
             await _context.Comments.Where(c => c.PostId == id).ExecuteDeleteAsync();
             var deletedPosts = await _context.Posts
@@ -82,8 +66,8 @@ namespace FactOfHuman.Repository.Service
         {
             await _context.Reactions.Where(r => r.TargetId == id).ExecuteDeleteAsync();
             await _context.Comments.Where(c => c.PostId == id).ExecuteDeleteAsync();
-            var deletePost = _context.Posts.Where(p => p.Id == id).ExecuteDeleteAsync();
-            if (deletePost == null)
+            var deletePost = await _context.Posts.Where(p => p.Id == id).ExecuteDeleteAsync();
+            if (deletePost == 0)
             {
                 throw new Exception("Post not found");
             }
@@ -109,6 +93,8 @@ namespace FactOfHuman.Repository.Service
             var post = await _context.Posts
                 .Include(post => post.Tags)
                 .Include(post => post.Block)
+                .Include(post => post.Author)
+                .Include(post => post.Category)
                 .FirstOrDefaultAsync(post => post.Id == id);
             if (post == null)
             {

@@ -16,7 +16,7 @@ namespace FactOfHuman.Models
         public string activeToken { get; set; } = string.Empty;
         public DateTime ActiveTokenExpireAt { get; set; } = DateTime.UtcNow;
         public bool isActive { get; set; } = false;
-        public string RefreshToken { get; set; } = string.Empty;
-        public DateTime RefreshTokenExpiryTime { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
     }
 }

@@ -111,6 +111,13 @@ namespace FactOfHuman.Repository.Service
 
             return await CreateTokenResponse(user);
         }
+        private string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
+        }
         private async Task<TokenResponseDto> CreateTokenResponse(User user)
         {
             return new TokenResponseDto
@@ -118,6 +125,15 @@ namespace FactOfHuman.Repository.Service
                 Token = GenerateJwtToken(user),
                 RefreshToken = await GenerateAndSaveRefreshTokenAsync(user)
             };
+        }
+        private async Task<string> GenerateAndSaveRefreshTokenAsync(User user)
+        {
+            var refreshToken = GenerateRefreshToken();
+            _context.Users.Attach(user);
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+            await _context.SaveChangesAsync();
+            return refreshToken;
         }
 
         private async Task<User?> ValidateRefreshTokenAsync(Guid userId,string refreshToken)
@@ -129,23 +145,8 @@ namespace FactOfHuman.Repository.Service
             }
             return user;
         }
-        private string GenerateRefreshToken()
-        {
-            var randomNumber = new byte[32];
-            using(var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomNumber);
-                return Convert.ToBase64String(randomNumber);
-            }
-        }
-        private async Task<string> GenerateAndSaveRefreshTokenAsync(User user)
-        {
-            var refreshToken = GenerateRefreshToken();
-            user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
-            await _context.SaveChangesAsync();
-            return refreshToken;
-        }
+      
+        
         public string GenerateJwtToken(User user)
         {
             var claims = new List<Claim>
@@ -211,7 +212,7 @@ namespace FactOfHuman.Repository.Service
             return _context.Users.Any(u => u.Name == name);
         }
 
-        public async Task<TokenResponseDto?> RefreshTokenAsync(RefreshTokenRequestDto request, Guid userId)
+        public async Task<TokenResponseDto?> RefreshTokenAsync(Guid userId, RefreshTokenRequestDto request)
         {
             var user = await ValidateRefreshTokenAsync(userId, request.RefreshToken);
             if(user is null)
@@ -320,22 +321,6 @@ namespace FactOfHuman.Repository.Service
 
         public async Task<bool> DeleteUser(Guid userId)
         {
-            // Dùng khi số lượng nhiều
-            //{
-            //    const int batchSize = 500000;
-
-            //    _context.Database.SetCommandTimeout(0); // đặt 0 = vô hạn
-
-            //    while (true)
-            //    {
-            //        var deletedComments = await _context.Database.ExecuteSqlRawAsync(
-            //            "DELETE TOP(@p0) FROM Comments WHERE UserId = @p1",
-            //            batchSize, userId);
-
-            //        if (deletedComments == 0)
-            //            break;
-            //    }
-            //}
             await _context.Comments.Where(c => c.UserId == userId).ExecuteDeleteAsync();
             var user = await _context.Users.Where(u => u.Id == userId).ExecuteDeleteAsync();
             if (user == 0)

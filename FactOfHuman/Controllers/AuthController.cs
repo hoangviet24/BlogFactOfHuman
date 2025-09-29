@@ -61,6 +61,7 @@ namespace FactOfHuman.Controllers
             }
         }
         [HttpPost("refresh-token")]
+        [Authorize]
         public async Task<ActionResult<TokenResponseDto>> RefreshToken([FromBody] RefreshTokenRequestDto request)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -70,7 +71,7 @@ namespace FactOfHuman.Controllers
             }
             try
             {
-                var result = await _authService.RefreshTokenAsync(request,userId);
+                var result = await _authService.RefreshTokenAsync(userId,request);
                 return Ok(result);
             }
             catch (Exception ex)

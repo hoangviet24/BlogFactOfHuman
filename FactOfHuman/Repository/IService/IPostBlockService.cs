@@ -1,4 +1,5 @@
 ﻿using FactOfHuman.Dto.Post;
+using FactOfHuman.Dto.PostBlock;
 using FactOfHuman.Models;
 
 namespace FactOfHuman.Repository.IService

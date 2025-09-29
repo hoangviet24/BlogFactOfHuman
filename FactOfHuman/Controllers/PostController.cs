@@ -6,6 +6,7 @@ using FactOfHuman.Enum;
 using FactOfHuman.Extensions;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
+using FactOfHuman.Repository.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +55,13 @@ namespace FactOfHuman.Controllers
         public async Task<ActionResult<List<PostDto>>> Getall(int skip = 0,int take = 30)
         {
             var post = await _postService.GetAllAsync(skip, take);
+            return Ok(post);
+        }
+        [HttpGet("Get-top-10")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<PostDto>>> GetTop10()
+        {
+            var post = await _postService.GetTop10Async();
             return Ok(post);
         }
         [HttpGet("Get-By-Id/{id}")]
@@ -120,7 +128,7 @@ namespace FactOfHuman.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(Roles = "Author,Admin")]
+        [Authorize]
         [HttpDelete("Delete/{id}")]
         public async Task<ActionResult> DeletePost([FromRoute] Guid id)
         {
@@ -137,17 +145,32 @@ namespace FactOfHuman.Controllers
             }
             try
             {
+                _fileservice.DeleteFile(oldAvatarPath);
                 var isAdmin = User.IsInRole("Admin");
                 if (isAdmin)
                 {
-                    await _postService.DeletePostAsyncWithAdmin(id);
+                    try
+                    {
+                        await _postService.DeletePostAsyncWithAdmin(id);
+                       
+                        return Ok(new { message = "Post deleted successfully." });
+                    }
+                    catch(Exception ex) {
+                        return BadRequest(ex.Message);
+                    }
                 }
                 else
                 {
-                    await _postService.DeletePostAsync(id, userId.Value);
+                    try
+                    {
+                        await _postService.DeletePostAsync(id,userId.Value);
+                        return Ok(new { message = "Post deleted successfully." });
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest(ex.Message);
+                    }
                 }
-                _fileservice.DeleteFile(oldAvatarPath);
-                return Ok(new { message = "Post deleted successfully." });
             }
             catch (Exception ex)
             {

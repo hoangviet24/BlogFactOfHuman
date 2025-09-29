@@ -66,14 +66,12 @@ D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Composition.Runtime.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Composition.TypedParts.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Configuration.ConfigurationManager.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Drawing.Common.dll
-D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Formats.Asn1.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.IdentityModel.Tokens.Jwt.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Management.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Memory.Data.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Runtime.Caching.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Security.Cryptography.ProtectedData.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Security.Permissions.dll
-D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Text.Json.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\System.Windows.Extensions.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\de\Microsoft.CodeAnalysis.resources.dll
@@ -170,10 +168,11 @@ D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\staticwebassets.build.json
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\staticwebassets.build.json.cache
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\staticwebassets.development.json
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\staticwebassets.build.endpoints.json
-D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\staticwebassets.upToDateCheck.txt
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\FactOfHu.C67C669D.Up2Date
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\FactOfHuman.dll
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\refint\FactOfHuman.dll
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\FactOfHuman.pdb
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\FactOfHuman.genruntimeconfig.cache
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\ref\FactOfHuman.dll
+D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\FactOfHuman.staticwebassets.runtime.json
+D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\Microsoft.AspNetCore.Authentication.Facebook.dll
