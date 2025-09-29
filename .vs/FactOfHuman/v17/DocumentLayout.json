@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\C#\\FactOfHuman\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\.dockerfile||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\.dockerfile||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|d:\\c#\\factofhuman\\factofhuman\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3FD21510-9B57-4266-995C-6F64C7985BFD}|FactOfHuman\\FactOfHuman.csproj|solutionrelative:factofhuman\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -59,6 +71,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\.gitignore",
+              "RelativeDocumentMoniker": "FactOfHuman\\.gitignore",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\.gitignore",
+              "RelativeToolTip": "FactOfHuman\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-09-29T14:34:08.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\docker-compose.yml",
+              "RelativeDocumentMoniker": "FactOfHuman\\docker-compose.yml",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\docker-compose.yml",
+              "RelativeToolTip": "FactOfHuman\\docker-compose.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-09-29T14:33:30.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".dockerfile",
+              "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\.dockerfile",
+              "RelativeDocumentMoniker": "FactOfHuman\\.dockerfile",
+              "ToolTip": "D:\\C#\\FactOfHuman\\FactOfHuman\\.dockerfile",
+              "RelativeToolTip": "FactOfHuman\\.dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-09-29T14:32:40.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "PostController.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\PostController.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\PostController.cs",
@@ -71,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "PostDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\PostDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Post\\PostDto.cs",
@@ -79,12 +130,11 @@
               "RelativeToolTip": "FactOfHuman\\Dto\\Post\\PostDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T12:13:49.915Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-29T12:13:49.915Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "PostService.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\PostService.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\PostService.cs",
@@ -92,12 +142,11 @@
               "RelativeToolTip": "FactOfHuman\\Repository\\Service\\PostService.cs",
               "ViewState": "AgIAAJMAAAAAAAAAAAAAAKUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T12:06:59.684Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-29T12:06:59.684Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "CommentDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\CommentDto\\CommentDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\CommentDto\\CommentDto.cs",
@@ -109,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Mapper\\MappingProfile.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Mapper\\MappingProfile.cs",
@@ -117,12 +166,11 @@
               "RelativeToolTip": "FactOfHuman\\Mapper\\MappingProfile.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAACEAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T09:20:29.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-27T09:20:29.1Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "OpenApiConfig.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Extensions\\OpenApiConfig.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Extensions\\OpenApiConfig.cs",
@@ -134,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "PostBlockService.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Repository\\Service\\PostBlockService.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Repository\\Service\\PostBlockService.cs",
@@ -146,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "CreatePostDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\Post\\CreatePostDto.cs",
@@ -158,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "CreatePostBlockDto.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Dto\\PostBlock\\CreatePostBlockDto.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Dto\\PostBlock\\CreatePostBlockDto.cs",
@@ -170,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "PostBlockController.cs",
               "DocumentMoniker": "D:\\C#\\FactOfHuman\\FactOfHuman\\Controllers\\PostBlockController.cs",
               "RelativeDocumentMoniker": "FactOfHuman\\Controllers\\PostBlockController.cs",
