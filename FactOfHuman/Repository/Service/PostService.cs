@@ -28,7 +28,7 @@ namespace FactOfHuman.Repository.Service
             var titleExists = await _context.Posts.AnyAsync(p => p.Title == dto.Title);
             if (titleExists)
             {
-                throw new Exception("Title already exists");
+                throw new Exception("Tiêu đề đã có");
             }
             var tag = await _context.Tags
                 .Where(tag => dto.Tags.Contains(tag.Id))
@@ -111,9 +111,11 @@ namespace FactOfHuman.Repository.Service
         public async Task<List<PostDto>> GetByNamePostAsync(string name, int skip, int take)
         {
             var post = await _context.Posts
+                .Where(post => post.Title.Contains(name))
                 .Include(post => post.Tags)
                 .Include(post => post.Block)
-                .Where(post => post.Title.Contains(name))
+                .Include(post => post.Author)
+                .Include(post => post.Category)
                 .OrderByDescending(post => post.Views)
                 .ThenByDescending(post => post.PublishedAt)
                 .Skip(skip)
@@ -122,6 +124,22 @@ namespace FactOfHuman.Repository.Service
             if (post == null) {
                 throw new Exception("Post not found");
             }
+            var postdto = _mapper.Map<List<PostDto>>(post);
+            return postdto;
+        }
+
+        public async Task<List<PostDto>> GetPostByCategory(Guid categoryId, int skip, int take)
+        {
+            var post = await _context.Posts
+                .Where(p => p.CategoryId == categoryId)
+                .Include(post => post.Tags)
+                .Include(post => post.Block)
+                .Include(post => post.Author)
+                .Include(post => post.Category)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+            if (post == null) { throw new Exception("Category not found"); }
             var postdto = _mapper.Map<List<PostDto>>(post);
             return postdto;
         }
@@ -168,6 +186,7 @@ namespace FactOfHuman.Repository.Service
             var post = await _context.Posts
                 .Include(post => post.Tags)
                 .Include(post => post.Block)
+                .Where(p => p.Views > 1000)
                 .OrderByDescending(p => _context.Reactions.Count(r => r.TargetType == TargetType.Post && r.TargetId == p.Id))
                 .ThenByDescending(post => post.Views)
                 .Take(10)

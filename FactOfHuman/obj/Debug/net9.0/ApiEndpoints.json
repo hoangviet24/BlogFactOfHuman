@@ -597,6 +597,42 @@
   },
   {
     "ContainingType": "FactOfHuman.Controllers.PostController",
+    "Method": "GetByCategory",
+    "RelativePath": "api/Post/Get-By-Category/{categoryId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "take",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FactOfHuman.Dto.Post.PostDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.PostController",
     "Method": "GetById",
     "RelativePath": "api/Post/Get-By-Id/{id}",
     "HttpMethod": "GET",

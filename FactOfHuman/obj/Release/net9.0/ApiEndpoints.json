@@ -597,6 +597,42 @@
   },
   {
     "ContainingType": "FactOfHuman.Controllers.PostController",
+    "Method": "GetByCategory",
+    "RelativePath": "api/Post/Get-By-Category/{categoryId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "take",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FactOfHuman.Dto.Post.PostDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.PostController",
     "Method": "GetById",
     "RelativePath": "api/Post/Get-By-Id/{id}",
     "HttpMethod": "GET",
@@ -681,6 +717,26 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[FactOfHuman.Dto.Post.PostDto, FactOfHuman, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FactOfHuman.Controllers.PostController",
+    "Method": "GetTop10",
+    "RelativePath": "api/Post/Get-top-10",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[FactOfHuman.Dto.Post.PostDto, FactOfHuman, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -872,7 +928,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "FactOfHuman.Migrations.PostBlock",
+        "Type": "FactOfHuman.Models.PostBlock",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -908,7 +964,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[FactOfHuman.Migrations.PostBlock, FactOfHuman, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[FactOfHuman.Models.PostBlock, FactOfHuman, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -934,7 +990,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "FactOfHuman.Migrations.PostBlock",
+        "Type": "FactOfHuman.Models.PostBlock",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -980,7 +1036,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "FactOfHuman.Migrations.PostBlock",
+        "Type": "FactOfHuman.Models.PostBlock",
         "MediaTypes": [
           "text/plain",
           "application/json",

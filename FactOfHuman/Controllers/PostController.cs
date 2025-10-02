@@ -32,7 +32,7 @@ namespace FactOfHuman.Controllers
         }
         [Authorize(Roles ="Author,Admin")]
         [HttpPost("Post")]
-        [Consumes("multipart/form-data")]
+        [Consumes("multipart/form-data")]   
         public async Task<ActionResult<PostDto>> CreatePost([FromForm] CreatePostDto? dto)
         {
             var userId = User.getUserId();
@@ -78,6 +78,19 @@ namespace FactOfHuman.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("Get-By-Category/{categoryId}")]
+        public async Task<ActionResult<PostDto>> GetByCategory([FromRoute] Guid categoryId, int skip = 0, int take = 30)
+        {
+            try
+            {
+                var post = await _postService.GetPostByCategory(categoryId, skip, take);
+                return Ok(post);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet("Get-By-Name")]
         [AllowAnonymous]
         public async Task<ActionResult<List<PostDto>>> GetByName([FromQuery]string name, int skip = 0, int take = 30)
@@ -87,7 +100,7 @@ namespace FactOfHuman.Controllers
         }
         [HttpGet("Get-By-UserId")]
         [AllowAnonymous]
-        public async Task<ActionResult<List<PostDto>>> GetByUserId([FromRoute] Guid userId, int skip = 0, int take = 30)
+        public async Task<ActionResult<List<PostDto>>> GetByUserId([FromQuery] Guid userId, int skip = 0, int take = 30)
         {
             var post = await _postService.GetPostsByUserIdAsync(userId, skip, take);
             return Ok(post);

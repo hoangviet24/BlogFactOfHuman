@@ -6,12 +6,15 @@ using FactOfHuman.Dto.UserDto;
 using FactOfHuman.Enum;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
+using FactOfHuman.Response;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
@@ -106,7 +109,7 @@ namespace FactOfHuman.Repository.Service
             }
             if (user!.isActive == false)
             {
-                throw new BadHttpRequestException("Email is not active");
+                throw new UserNotActiveException("Email is not active");
             }
 
             return await CreateTokenResponse(user);
@@ -199,7 +202,7 @@ namespace FactOfHuman.Repository.Service
             var html = await File.ReadAllTextAsync(templatePath);
             html = html.Replace("{{Username}}", user.Name)
                 .Replace("{{ActivationLink}}", activationLink);
-            await emailService.SendEmailAsync(user.Email, "Active account", html);
+            _ = Task.Run(() => emailService.SendEmailAsync(user.Email, "Active account", html));
             var userDto = _mapper.Map<UserDto>(user);
             return await Task.FromResult(userDto);
         }

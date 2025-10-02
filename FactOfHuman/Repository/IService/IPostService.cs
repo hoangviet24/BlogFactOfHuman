@@ -10,6 +10,7 @@ namespace FactOfHuman.Repository.IService
         //Get Post
         Task<List<PostDto>> GetAllAsync(int skip, int take);
         Task<List<PostDto>> GetTop10Async();
+        Task<List<PostDto>> GetPostByCategory(Guid categoryId, int skip, int take);
         Task<List<PostDto>> GetPostsByUserIdAsync(Guid userId, int skip, int take);
         Task<List<PostDto>> GetByNamePostAsync(string name, int skip, int take);
         Task<PostDto> GetByIdAsync(Guid id);

@@ -176,3 +176,4 @@ D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\FactOfHuman.genruntimeconfig.ca
 D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\ref\FactOfHuman.dll
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\FactOfHuman.staticwebassets.runtime.json
 D:\C#\FactOfHuman\FactOfHuman\bin\Release\net9.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\C#\FactOfHuman\FactOfHuman\obj\Release\net9.0\staticwebassets.upToDateCheck.txt

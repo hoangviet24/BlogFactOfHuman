@@ -6,10 +6,12 @@ using FactOfHuman.Enum;
 using FactOfHuman.Extensions;
 using FactOfHuman.Models;
 using FactOfHuman.Repository.IService;
+using FactOfHuman.Response;
 using Google.Apis.Util;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Authentication;
 using System.Security.Claims;
 
 namespace FactOfHuman.Controllers
@@ -54,14 +56,20 @@ namespace FactOfHuman.Controllers
                 var result = await _authService.Login(loginDto);
                 return Ok(result);
             }
+            catch (UserNotActiveException ex)
+            {
+                return StatusCode(403, new ApiResponse<TokenResponseDto>(false, ex.Message));
+            }
+            catch (InvalidCredentialException ex)
+            {
+                return Unauthorized(new ApiResponse<TokenResponseDto>(false, ex.Message));
+            }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
-         
+                return StatusCode(500, new ApiResponse<TokenResponseDto>(false, "Lỗi hệ thống: " + ex.Message));
             }
         }
         [HttpPost("refresh-token")]
-        [Authorize]
         public async Task<ActionResult<TokenResponseDto>> RefreshToken([FromBody] RefreshTokenRequestDto request)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -173,8 +181,9 @@ namespace FactOfHuman.Controllers
             user.activeToken = ""; // clear
             await _context.SaveChangesAsync();
 
-            //return Redirect($"https://fact-of-human.web.app/");
-            return Ok(value: new { message = "Kích hoạt tài khoản thành công, vui lòng đăng nhập" });
+            return Redirect($"https://playful-crumble-00ea56.netlify.app/login");
+            //return Redirect($"http://localhost:5173/login");
+            //return Ok(value: new { message = "Kích hoạt tài khoản thành công, vui lòng đăng nhập" });
         }
         [HttpPost("resend-email")]
         public async Task<IActionResult> ResendActive([FromQuery] string email)

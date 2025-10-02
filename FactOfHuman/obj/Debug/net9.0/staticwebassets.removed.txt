@@ -1,2 +1,2 @@
-D:\C#\FactOfHuman\FactOfHuman\wwwroot\posts\f7d1e70d-4cb7-4172-9c57-5b56bdd480f1.png
-D:\C#\FactOfHuman\FactOfHuman\wwwroot\posts\44c4862b-63b9-4af7-aa71-b9e45dba0662.png
+D:\C#\FactOfHuman\FactOfHuman\wwwroot\uploads\1b0a9c7d-2a66-431d-bf4c-04e34b2fcb28.png
+D:\C#\FactOfHuman\FactOfHuman\wwwroot\uploads\f175b582-e93c-42ef-8605-7cdf7888f78b.png
